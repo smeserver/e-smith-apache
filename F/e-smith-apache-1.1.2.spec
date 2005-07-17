@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.1.2
-%define release 16
+%define release 16sme01
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -24,6 +24,8 @@ Patch11: e-smith-apache-1.1.2-13.mitel_patch
 Patch12: e-smith-apache-1.1.2-14.mitel_patch
 Patch13: e-smith-apache-1.1.2-15.mitel_patch
 Patch14: e-smith-apache-1.1.2-16.mitel_patch
+Patch15: e-smith-apache-1.1.2-rewrite.patch
+Patch16: e-smith-apache-1.1.2-copying.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -39,6 +41,10 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Sun Jul 17 2005 Shad L. Lords <slords@mail.com>
+- [1.1.2-16sme01]
+- Cleanup namespace and rewrites 
+
 * Tue Jun 21 2005 Charlie Brady <charlieb@e-smith.com>
 - [1.1.2-16]
 - Make sure that DocumentRoot directory exists - latest apache2
@@ -395,6 +401,8 @@ e-smith server and gateway software - apache module.
 %patch12 -p1
 %patch13 -p1
 %patch14 -p1
+%patch15 -p1
+%patch16 -p1
 
 %pre
 
