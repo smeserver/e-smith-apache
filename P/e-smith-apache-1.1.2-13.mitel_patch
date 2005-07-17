@@ -1,0 +1,51 @@
+Index: e-smith-apache/e-smith-apache.spec
+diff -u e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35ProxyPass:1.2 e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35ProxyPass:1.3
+--- e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35ProxyPass:1.2	Fri May 27 15:43:29 2005
++++ e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35ProxyPass	Fri May 27 15:48:12 2005
+@@ -1,5 +1,7 @@
+ {
++    use esmith::AccountsDB;
+     my $db = esmith::AccountsDB->open_ro;
++    return "" unless $db;
+     foreach my $path ($db->get_all_by_prop(type => 'ProxyPass'))
+     {
+ 	my $key = $path->key;
+Index: e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/02ServerName
+diff -u /dev/null e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/02ServerName:1.1
+--- /dev/null	Fri May 27 15:48:40 2005
++++ e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/02ServerName	Fri May 27 15:48:12 2005
+@@ -0,0 +1 @@
++    ServerName www.{$virtualHost}
+Index: e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/03ServerAlias
+diff -u /dev/null e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/03ServerAlias:1.1
+--- /dev/null	Fri May 27 15:48:40 2005
++++ e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/03ServerAlias	Fri May 27 15:48:12 2005
+@@ -0,0 +1 @@
++    ServerAlias { "$virtualHost  $SystemName.$virtualHost" }
+Index: e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/ProxyPassContent
+diff -u /dev/null e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/ProxyPassContent:1.1
+--- /dev/null	Fri May 27 15:48:40 2005
++++ e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/ProxyPassContent	Fri May 27 15:48:12 2005
+@@ -0,0 +1,8 @@
++{
++    use esmith::DomainsDB;
++    my $db = esmith::DomainsDB->open_ro;
++    my $d = $db->get($virtualHost);
++    my $t = $d->prop('ProxyPassTarget');
++
++    $OUT = "    ProxyPass / $t";
++}
+Index: e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/template-begin
+diff -u /dev/null e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/template-begin:1.1
+--- /dev/null	Fri May 27 15:48:40 2005
++++ e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/template-begin	Fri May 27 15:48:12 2005
+@@ -0,0 +1,2 @@
++
++<VirtualHost {$ipAddress}:{$port}>
+Index: e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/template-end
+diff -u /dev/null e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/template-end:1.1
+--- /dev/null	Fri May 27 15:48:40 2005
++++ e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/template-end	Fri May 27 15:48:12 2005
+@@ -0,0 +1,2 @@
++</VirtualHost>
++

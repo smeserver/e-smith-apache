@@ -1,0 +1,62 @@
+Index: e-smith-apache/e-smith-apache.spec
+diff -u e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35ProxyPass:1.1 e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35ProxyPass:1.2
+--- e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35ProxyPass:1.1	Fri May 27 11:43:37 2005
++++ e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35ProxyPass	Fri May 27 15:43:29 2005
+@@ -1,36 +1,27 @@
+ {
+-    $accountsref = {
+-        eval "{ use esmith::config;
+-                tie my %tmp, 'esmith::config', '/home/e-smith/accounts';
+-                %tmp;
+-              }"
+-        };
+-    foreach my $path
+-	(grep
+-	    { db_get_type($accountsref, $_) eq 'ProxyPass' }
+-		db_get($accountsref))
++    my $db = esmith::AccountsDB->open_ro;
++    foreach my $path ($db->get_all_by_prop(type => 'ProxyPass'))
+     {
+-	my $target = db_get_prop($accountsref, $path, 'Target');
++	my $key = $path->key;
++	my $target = $path->prop('Target');
+ 	unless (defined $target)
+ 	{
+-	    warn("No Target property specified for ProxyPath $path." .
++	    warn("No Target property specified for ProxyPath $key." .
+ 		" Skipping...");
+ 	    next;
+ 	}
+-	my $desc = db_get_prop($accountsref, $path, 'Description');
++	my $desc = $path->prop('Description');
+ 	if (defined $desc)
+ 	{
+-	    $OUT .= "# ProxyPass: $path\n";
++	    $OUT .= "# ProxyPass: $key\n";
+ 	    $OUT .= "# Description: $desc\n";
+ 	}
+-	$OUT .= "ProxyPass\t/$path\t$target\n";
+-	$OUT .= "ProxyPassReverse\t/$path\t$target\n";
+-	$OUT .= "<Location /$path>\n";
++	$OUT .= "ProxyPass\t/$key\t$target\n";
++	$OUT .= "ProxyPassReverse\t/$key\t$target\n";
++	$OUT .= "<Location /$key>\n";
+ 
+-	my $proxyHTTP = db_get_prop($accountsref, $path, 'HTTP') ||
+-	    "yes";
+-	my $proxyHTTPS = db_get_prop($accountsref, $path, 'HTTPS') ||
+-	    "yes";
++	my $proxyHTTP = $path->prop('HTTP') || "yes";
++	my $proxyHTTPS = $path->prop('HTTPS') || "yes";
+ 
+ 	if ( $proxyHTTP eq "no" )
+ 	{
+@@ -42,7 +33,7 @@
+ 	    $OUT .= '    SSLRequire (%{HTTPS} eq "NULL")' . "\n";
+ 	}
+ 
+-	my $valid = db_get_prop($accountsref, $path, 'ValidFrom');
++	my $valid = $path->prop('ValidFrom');
+ 	if (defined $valid)
+ 	{
+ 	    # Convert from comma separated list to space separated

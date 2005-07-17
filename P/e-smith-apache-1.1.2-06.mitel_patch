@@ -1,0 +1,368 @@
+Index: e-smith-apache/createlinks
+diff -u e-smith-apache/createlinks:1.11 e-smith-apache/createlinks:1.12
+--- e-smith-apache/createlinks:1.11	Tue Feb 22 17:27:42 2005
++++ e-smith-apache/createlinks	Mon Mar 14 12:03:44 2005
+@@ -7,15 +7,16 @@
+ #--------------------------------------------------
+ my $event = "console-save";
+ 
+-event_link("conf-httpd", $event, "55");
+-event_link("restart-httpd-full", $event, "75");
++templates2events("/etc/httpd/conf/httpd.conf", $event);
++safe_symlink("restart", "root/etc/e-smith/events/$event/services2adjust/httpd-e-smith");
+ 
+ #--------------------------------------------------
+ # actions for bootstrap-console-save event
+ #--------------------------------------------------
+ $event = "bootstrap-console-save";
+ 
+-event_link("conf-httpd", $event, "55");
++templates2events("/etc/httpd/conf/httpd.conf", $event);
++templates2events("/etc/logrotate.d/apache", $event);
+ 
+ #--------------------------------------------------
+ # actions for domain-create event
+@@ -23,7 +24,7 @@
+ 
+ $event = "domain-create";
+ 
+-event_link("conf-httpd", $event, "55");
++templates2events("/etc/httpd/conf/httpd.conf", $event);
+ 
+ #--------------------------------------------------
+ # actions for domain-delete event
+@@ -31,7 +32,7 @@
+ 
+ $event = "domain-delete";
+ 
+-event_link("conf-httpd", $event, "55");
++templates2events("/etc/httpd/conf/httpd.conf", $event);
+ 
+ #--------------------------------------------------
+ # actions for domain-modify event
+@@ -39,7 +40,7 @@
+ 
+ $event = "domain-modify";
+ 
+-event_link("conf-httpd", $event, "55");
++templates2events("/etc/httpd/conf/httpd.conf", $event);
+ 
+ #--------------------------------------------------
+ # actions for ibay-create event
+@@ -47,7 +48,7 @@
+ 
+ $event = "ibay-create";
+ 
+-event_link("conf-httpd", $event, "55");
++templates2events("/etc/httpd/conf/httpd.conf", $event);
+ event_link("restart-httpd-graceful", $event, "90");
+ 
+ #--------------------------------------------------
+@@ -56,8 +57,8 @@
+ 
+ $event = "ibay-delete";
+ 
+-event_link("conf-httpd", $event, "55");
+-event_link("restart-httpd-graceful", $event, "90");
++templates2events("/etc/httpd/conf/httpd.conf", $event);
++safe_symlink("sigusr1", "root/etc/e-smith/events/$event/services2adjust/httpd-e-smith");
+ 
+ #--------------------------------------------------
+ # actions for ibay-modify event
+@@ -66,8 +67,8 @@
+ 
+ $event = "ibay-modify";
+ 
+-event_link("conf-httpd", $event, "55");
+-event_link("restart-httpd-graceful", $event, "90");
++templates2events("/etc/httpd/conf/httpd.conf", $event);
++safe_symlink("sigusr1", "root/etc/e-smith/events/$event/services2adjust/httpd-e-smith");
+ 
+ #--------------------------------------------------
+ # actions for ibay-modify-servers event
+@@ -76,8 +77,8 @@
+ 
+ $event = "ibay-modify-servers";
+ 
+-event_link("conf-httpd", $event, "55");
+-event_link("restart-httpd-graceful", $event, "90");
++templates2events("/etc/httpd/conf/httpd.conf", $event);
++safe_symlink("sigusr1", "root/etc/e-smith/events/$event/services2adjust/httpd-e-smith");
+ 
+ #--------------------------------------------------
+ # actions for network-create event
+@@ -85,8 +86,8 @@
+ 
+ $event = "network-create";
+ 
+-event_link("conf-httpd", $event, "55");
+-event_link("restart-httpd-graceful", $event, "90");
++templates2events("/etc/httpd/conf/httpd.conf", $event);
++safe_symlink("sigusr1", "root/etc/e-smith/events/$event/services2adjust/httpd-e-smith");
+ 
+ #--------------------------------------------------
+ # actions for network-delete event
+@@ -94,8 +95,8 @@
+ 
+ $event = "network-delete";
+ 
+-event_link("conf-httpd", $event, "55");
+-event_link("restart-httpd-graceful", $event, "90");
++templates2events("/etc/httpd/conf/httpd.conf", $event);
++safe_symlink("sigusr1", "root/etc/e-smith/events/$event/services2adjust/httpd-e-smith");
+ 
+ #--------------------------------------------------
+ # actions for remoteaccess-update event
+@@ -103,8 +104,8 @@
+ 
+ $event = "remoteaccess-update";
+ 
+-event_link("conf-httpd", $event, "50");
+-event_link("restart-httpd-graceful", $event, "70");
++templates2events("/etc/httpd/conf/httpd.conf", $event);
++safe_symlink("sigusr1", "root/etc/e-smith/events/$event/services2adjust/httpd-e-smith");
+ 
+ #--------------------------------------------------
+ # actions for email-update event
+@@ -112,8 +113,8 @@
+ 
+ $event = "email-update";
+ 
+-event_link("conf-httpd", $event, "55");
+-event_link("restart-httpd-graceful", $event, "65");
++templates2events("/etc/httpd/conf/httpd.conf", $event);
++safe_symlink("sigusr1", "root/etc/e-smith/events/$event/services2adjust/httpd-e-smith");
+ 
+ #--------------------------------------------------
+ # actions for logrotate event
+@@ -121,8 +122,8 @@
+ 
+ $event = "logrotate";
+ 
+-event_link("conf-httpd", $event, "25");
+-event_link("restart-httpd-graceful", $event, "65");
++event_link("logrotate-httpd", $event, "25");
++safe_symlink("sigusr1", "root/etc/e-smith/events/$event/services2adjust/httpd-e-smith");
+ 
+ #--------------------------------------------------
+ # set up daemontools
+Index: e-smith-apache/e-smith-apache.spec
+diff -u e-smith-apache/root/etc/e-smith/events/actions/conf-httpd:1.3 e-smith-apache/root/etc/e-smith/events/actions/conf-httpd:removed
+--- e-smith-apache/root/etc/e-smith/events/actions/conf-httpd:1.3	Tue Dec  9 22:16:39 2003
++++ e-smith-apache/root/etc/e-smith/events/actions/conf-httpd	Wed Dec 31 19:00:00 1969
+@@ -1,96 +0,0 @@
+-#!/usr/bin/perl -w
+-
+-#----------------------------------------------------------------------
+-# copyright (C) 1999-2003 Mitel Networks Corporation
+-# 
+-# This program is free software; you can redistribute it and/or modify
+-# it under the terms of the GNU General Public License as published by
+-# the Free Software Foundation; either version 2 of the License, or
+-# (at your option) any later version.
+-#
+-# This program is distributed in the hope that it will be useful,
+-# but WITHOUT ANY WARRANTY; without even the implied warranty of
+-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-# GNU General Public License for more details.
+-#
+-# You should have received a copy of the GNU General Public License
+-# along with this program; if not, write to the Free Software
+-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+-# 
+-# Technical support for this program is available from Mitel Networks 
+-# Please visit our web site www.mitel.com/sme/ for details.
+-#----------------------------------------------------------------------
+-package esmith;
+-
+-use strict;
+-use Errno;
+-use esmith::ConfigDB;
+-use esmith::templates;
+-
+-my $conf = esmith::ConfigDB->open or die "Could not open config DB\n";
+-
+-#------------------------------------------------------------
+-# Configure Apache web server.
+-#------------------------------------------------------------
+-
+-my $event = $ARGV[0] || "Unknown";
+-
+-# Migrate httpd-e-smith access setting
+-my $http = $conf->get('httpd-e-smith');
+-die "httpd-e-smith record missing from ConfigDB\n" unless ($http);
+-
+-my $access = $http->prop('access') || 'public';
+-
+-my $s_m = $conf->get('SystemMode') || 'servergateway';
+-
+-if ($access =~ /(serveronly|servergateway-private)/)
+-{
+-    $http->set_prop('access' => 'private');
+-}
+-
+-if ($event eq "logrotate")
+-{
+-    use File::Copy;
+-
+-    # Set up filenames to be used by syslog. We first set up symlinks
+-    # with known names, then use the value of the symlink when we
+-    # expand the configuration files
+-    foreach my $file (qw(access_log error_log ssl_engine_log))
+-    {
+-        my $time = time();
+-        my $logdir = "/var/log/httpd";
+-
+-        if (-f "${logdir}/${file}" and ! -l "${logdir}/${file}")
+-        {
+-            my ($sec,$min,$hour,$mday,$mon,$year) = localtime($time - 1);
+-            my $target = sprintf("%s.%04d%02d%02d%02d%02d%02d",
+-            $file, $year+1900, $mon+1, $mday, $hour, $min, $sec);
+-            move("${logdir}/${file}", "${logdir}/${target}") or
+-            die "Could not move ${logdir}/${file} to " .
+-                "${logdir}/${target}";
+-        }
+-        my ($sec,$min,$hour,$mday,$mon,$year) = localtime($time);
+-        my $target = sprintf("%s.%04d%02d%02d%02d%02d%02d",
+-        $file, $year+1900, $mon+1, $mday, $hour, $min, $sec);
+-
+-        if (-l "${logdir}/${file}")
+-        {
+-            unlink("${logdir}/${file}") or
+-            warn "Could not unlink ${logdir}/${file}";
+-        }
+-        symlink("${target}", "${logdir}/${file}") or
+-        warn "Could not symlink ${target} to ${logdir}/${file}";
+-    }
+-}
+-
+-# All real stuff goes in here, so this is all we need to reconfigure
+-# when we change stuff for real
+-# We don't need to expand this post-install/post-upgrade, because we
+-# run bootstrap-console-save before apache is started - unless we are
+-# really devious and a bit stupid.
+-esmith::templates::processTemplate ({ 
+-    TEMPLATE_PATH => "/etc/httpd/conf/httpd.conf" });
+-esmith::templates::processTemplate ({ 
+-    TEMPLATE_PATH => "/etc/logrotate.d/apache" });
+-
+-exit (0);
+Index: e-smith-apache/root/etc/e-smith/events/actions/restart-httpd-full
+diff -u e-smith-apache/root/etc/e-smith/events/actions/restart-httpd-full:1.2 e-smith-apache/root/etc/e-smith/events/actions/restart-httpd-full:removed
+--- e-smith-apache/root/etc/e-smith/events/actions/restart-httpd-full:1.2	Tue Dec  9 22:16:39 2003
++++ e-smith-apache/root/etc/e-smith/events/actions/restart-httpd-full	Wed Dec 31 19:00:00 1969
+@@ -1,48 +0,0 @@
+-#!/usr/bin/perl -w
+-
+-#----------------------------------------------------------------------
+-# copyright (C) 1999-2001 e-smith, inc.
+-#
+-# This program is free software; you can redistribute it and/or modify
+-# it under the terms of the GNU General Public License as published by
+-# the Free Software Foundation; either version 2 of the License, or
+-# (at your option) any later version.
+-#
+-# This program is distributed in the hope that it will be useful,
+-# but WITHOUT ANY WARRANTY; without even the implied warranty of
+-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the
+-# GNU General Public License for more details.
+-#
+-# You should have received a copy of the GNU General Public License
+-# along with this program; if not, write to the Free Software
+-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+-# 
+-# Technical support for this program is available from e-smith, inc.
+-# Please visit our web site www.e-smith.com for details.
+-#----------------------------------------------------------------------
+-
+-package esmith;
+-
+-use strict;
+-use Errno;
+-use esmith::config;
+-use esmith::util;
+-use esmith::db;
+-
+-my %conf;
+-tie %conf, 'esmith::config';
+-
+-#------------------------------------------------------------
+-# Perform a full restart of the HTTP server.
+-#------------------------------------------------------------
+-
+-my $status = db_get_prop(\%conf, "httpd-e-smith", "status") || "disabled";
+-my $action = ($status eq "enabled") ? "restart" : "stop";
+-my $init = '/etc/init.d/httpd-e-smith';
+-
+-untie %conf;
+-
+-system($init, $action) == 0
+-    or die "Failed to $action httpd-e-smith.\n";
+-
+-exit (0);
+Index: e-smith-apache/root/etc/e-smith/events/actions/restart-httpd-graceful
+diff -u e-smith-apache/root/etc/e-smith/events/actions/restart-httpd-graceful:1.3 e-smith-apache/root/etc/e-smith/events/actions/restart-httpd-graceful:removed
+--- e-smith-apache/root/etc/e-smith/events/actions/restart-httpd-graceful:1.3	Wed Feb 18 11:12:59 2004
++++ e-smith-apache/root/etc/e-smith/events/actions/restart-httpd-graceful	Wed Dec 31 19:00:00 1969
+@@ -1,61 +0,0 @@
+-#!/usr/bin/perl -w
+-
+-#----------------------------------------------------------------------
+-# copyright (C) 1999-2001 e-smith, inc.
+-#
+-# This program is free software; you can redistribute it and/or modify
+-# it under the terms of the GNU General Public License as published by
+-# the Free Software Foundation; either version 2 of the License, or
+-# (at your option) any later version.
+-#
+-# This program is distributed in the hope that it will be useful,
+-# but WITHOUT ANY WARRANTY; without even the implied warranty of
+-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the
+-# GNU General Public License for more details.
+-#
+-# You should have received a copy of the GNU General Public License
+-# along with this program; if not, write to the Free Software
+-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+-# 
+-# Technical support for this program is available from e-smith, inc.
+-# Please visit our web site www.e-smith.com for details.
+-#----------------------------------------------------------------------
+-
+-package esmith;
+-
+-use strict;
+-use Errno;
+-use esmith::ConfigDB;
+-
+-#------------------------------------------------------------
+-# Perform a graceful restart of the HTTP server.
+-#------------------------------------------------------------
+-
+-my $db = esmith::ConfigDB->open_ro
+-    or die "Can't open configuration database.\n";
+-my $status = $db->get_prop('httpd-e-smith', 'status');
+-my $action = ($status eq 'enabled') ? 'start' : 'stop';
+-my $init = '/etc/init.d/httpd-e-smith';
+-my $svstat = '/usr/local/bin/svstat';
+-
+-if ($action eq 'start')
+-{
+-    chomp( my $status = `$svstat /service/httpd-e-smith` );
+-    if ($status =~ m#^/service/httpd-e-smith: (\w+) #)
+-    {
+-        if ($1 eq 'up')
+-        {
+-            # Reload ssh with a USR1 signal.
+-            $action = 'sigusr1';
+-        }
+-    }
+-    else
+-    {
+-        die "Failed to parse svstat output!\n";
+-    }
+-}
+-
+-system($init, $action) == 0
+-    or die "Failed to $action httpd-e-smith.\n";
+-
+-exit (0);

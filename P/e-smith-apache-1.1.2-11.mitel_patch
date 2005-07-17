@@ -1,0 +1,227 @@
+Index: e-smith-apache/e-smith-apache.spec
+diff -u /dev/null e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35ProxyPass:1.1
+--- /dev/null	Fri May 27 11:44:19 2005
++++ e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35ProxyPass	Fri May 27 11:43:37 2005
+@@ -0,0 +1,56 @@
++{
++    $accountsref = {
++        eval "{ use esmith::config;
++                tie my %tmp, 'esmith::config', '/home/e-smith/accounts';
++                %tmp;
++              }"
++        };
++    foreach my $path
++	(grep
++	    { db_get_type($accountsref, $_) eq 'ProxyPass' }
++		db_get($accountsref))
++    {
++	my $target = db_get_prop($accountsref, $path, 'Target');
++	unless (defined $target)
++	{
++	    warn("No Target property specified for ProxyPath $path." .
++		" Skipping...");
++	    next;
++	}
++	my $desc = db_get_prop($accountsref, $path, 'Description');
++	if (defined $desc)
++	{
++	    $OUT .= "# ProxyPass: $path\n";
++	    $OUT .= "# Description: $desc\n";
++	}
++	$OUT .= "ProxyPass\t/$path\t$target\n";
++	$OUT .= "ProxyPassReverse\t/$path\t$target\n";
++	$OUT .= "<Location /$path>\n";
++
++	my $proxyHTTP = db_get_prop($accountsref, $path, 'HTTP') ||
++	    "yes";
++	my $proxyHTTPS = db_get_prop($accountsref, $path, 'HTTPS') ||
++	    "yes";
++
++	if ( $proxyHTTP eq "no" )
++	{
++	    $OUT .= "    SSLRequireSSL\n";
++	}
++
++	if ( $proxyHTTPS eq "no" )
++	{
++	    $OUT .= '    SSLRequire (%{HTTPS} eq "NULL")' . "\n";
++	}
++
++	my $valid = db_get_prop($accountsref, $path, 'ValidFrom');
++	if (defined $valid)
++	{
++	    # Convert from comma separated list to space separated
++	    $valid =~ s/,/ /g;
++	    $OUT .= "    order deny,allow\n";
++	    $OUT .= "    deny from all\n";
++	    $OUT .= "    allow from $valid\n";
++	}
++	$OUT .= "</Location>\n";
++    }
++}
+Index: e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassBrand
+diff -u e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassBrand:1.1.1.1 e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassBrand:1.2
+--- e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassBrand:1.1.1.1	Tue Jan  7 10:00:49 2003
++++ e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassBrand	Fri May 27 11:40:56 2005
+@@ -12,12 +12,3 @@
+     $OUT .= "    allow from $localAccess\n";
+ }
+ </Location>
+-
+-ProxyPass /e-smith-brand http://127.0.0.1:980/e-smith-brand/
+-<Location /e-smith-brand>
+-    order deny,allow
+-    deny from all
+-{
+-    $OUT .= "    allow from $localAccess\n";
+-}
+-</Location>
+Index: e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassCommon
+diff -u e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassCommon:1.1.1.1 e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassCommon:1.2
+--- e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassCommon:1.1.1.1	Tue Jan  7 10:00:49 2003
++++ e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassCommon	Fri May 27 11:40:56 2005
+@@ -4,22 +4,8 @@
+ # web server.
+ }
+ 
+-ProxyPass /e-smith-common http://127.0.0.1:980/server-common/
+-<Location /e-smith-common>
+-    order deny,allow
+-    deny from all
+-    allow from all
+-</Location>
+-
+ ProxyPass /server-common http://127.0.0.1:980/server-common/
+ <Location /server-common>
+-    order deny,allow
+-    deny from all
+-    allow from all
+-</Location>
+-
+-ProxyPass /common http://127.0.0.1:980/common/
+-<Location /common>
+     order deny,allow
+     deny from all
+     allow from all
+Index: e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassManager
+diff -u e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassManager:1.1.1.1 e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassManager:1.2
+--- e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassManager:1.1.1.1	Tue Jan  7 10:00:49 2003
++++ e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassManager	Fri May 27 11:40:56 2005
+@@ -4,15 +4,6 @@
+ # web server.
+ }
+ 
+-ProxyPass /e-smith-manager http://127.0.0.1:980/e-smith-manager/
+-<Location /e-smith-manager>
+-    order deny,allow
+-    deny from all
+-{
+-    $OUT .= "    allow from $localAccess\n";
+-}
+-</Location>
+-
+ ProxyPass /server-manager http://127.0.0.1:980/server-manager/
+ <Location /server-manager>
+     order deny,allow
+Index: e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassPassword
+diff -u e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassPassword:1.1.1.1 e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassPassword:1.2
+--- e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassPassword:1.1.1.1	Tue Jan  7 10:00:49 2003
++++ e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/92ProxyPassPassword	Fri May 27 11:40:56 2005
+@@ -4,15 +4,6 @@
+ # web server.
+ }
+ 
+-ProxyPass /e-smith-password http://127.0.0.1:980/user-password/
+-<Location /e-smith-password>
+-    order deny,allow
+-    deny from all
+-{
+-    $OUT .= "    allow from $localAccess\n";
+-}
+-</Location>
+-
+ ProxyPass /user-password http://127.0.0.1:980/user-password/
+ <Location /user-password>
+     order deny,allow
+Index: e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/27ManagerProxyPass
+diff -u e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/27ManagerProxyPass:1.7 e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/27ManagerProxyPass:1.8
+--- e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/27ManagerProxyPass:1.7	Tue Jun 22 16:20:46 2004
++++ e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/27ManagerProxyPass	Fri May 27 11:40:56 2005
+@@ -13,11 +13,11 @@
+     RewriteCond %{REMOTE_ADDR} !=127.0.0.1
+     RewriteRule ^/server-brand     https://%{HTTP_HOST}/server-brand [L,R]
+     RewriteCond %{REMOTE_ADDR} !=127.0.0.1
+-    RewriteRule ^/e-smith-manager  https://%{HTTP_HOST}/e-smith-manager [L,R]
++    RewriteRule ^/e-smith-manager  https://%{HTTP_HOST}/server-manager [L,R]
+     RewriteCond %{REMOTE_ADDR} !=127.0.0.1
+     RewriteRule ^/user-password    https://%{HTTP_HOST}/user-password [L,R]
+     RewriteCond %{REMOTE_ADDR} !=127.0.0.1
+-    RewriteRule ^/e-smith-password https://%{HTTP_HOST}/e-smith-password [L,R]
++    RewriteRule ^/e-smith-password https://%{HTTP_HOST}/user-password [L,R]
+ HERE
+     }
+     return "    # skipping ProxyPass directives\n" unless $port eq "443"; 
+@@ -46,24 +46,10 @@
+         allow from $localAccess $externalSSLAccess
+     </Location>
+ 
+-    ProxyPass /e-smith-brand http://127.0.0.1:980/e-smith-brand/
+-    <Location /e-smith-brand>
+-        order deny,allow
+-        deny from all
+-        allow from $localAccess $externalSSLAccess
+-    </Location>
+-
+     # ProxyPass executes a module which relays requests to another server
+     # We use it to allow transparent access to the admin instance of the
+     # web server.
+ 
+-    ProxyPass /e-smith-common http://127.0.0.1:980/server-common/
+-    <Location /e-smith-common>
+-        order deny,allow
+-        deny from all
+-        allow from $localAccess $externalSSLAccess
+-    </Location>
+-
+     ProxyPass /server-common http://127.0.0.1:980/server-common/
+     <Location /server-common>
+         order deny,allow
+@@ -71,24 +57,6 @@
+         allow from $localAccess $externalSSLAccess
+     </Location>
+ 
+-    ProxyPass /common http://127.0.0.1:980/common/
+-    <Location /common>
+-        order deny,allow
+-        deny from all
+-        allow from $localAccess $externalSSLAccess
+-    </Location>
+-
+-    # ProxyPass executes a module which relays requests to another server
+-    # We use it to allow transparent access to the admin instance of the
+-    # web server.
+-
+-    ProxyPass /e-smith-manager http://127.0.0.1:980/e-smith-manager/
+-    <Location /e-smith-manager>
+-        order deny,allow
+-        deny from all
+-        allow from $localAccess $externalSSLAccess
+-    </Location>
+-
+     ProxyPass /server-manager http://127.0.0.1:980/server-manager/
+     <Location /server-manager>
+         order deny,allow
+@@ -99,13 +67,6 @@
+     # ProxyPass executes a module which relays requests to another server
+     # We use it to allow transparent access to the admin instance of the
+     # web server.
+-
+-    ProxyPass /e-smith-password http://127.0.0.1:980/user-password/
+-    <Location /e-smith-password>
+-        order deny,allow
+-        deny from all
+-        allow from $localAccess $externalSSLAccess
+-    </Location>
+ 
+     ProxyPass /user-password http://127.0.0.1:980/user-password/
+     <Location /user-password>

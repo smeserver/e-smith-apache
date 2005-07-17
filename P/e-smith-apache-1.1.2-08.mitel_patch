@@ -1,0 +1,76 @@
+Index: e-smith-apache/createlinks
+diff -u e-smith-apache/createlinks:1.13 e-smith-apache/createlinks:1.14
+--- e-smith-apache/createlinks:1.13	Wed Mar 16 21:15:54 2005
++++ e-smith-apache/createlinks	Sun Mar 20 23:03:18 2005
+@@ -122,7 +122,6 @@
+ 
+ $event = "logrotate";
+ 
+-event_link("logrotate-httpd", $event, "25");
+ safe_symlink("sigusr1", "root/etc/e-smith/events/$event/services2adjust/httpd-e-smith");
+ 
+ #--------------------------------------------------
+Index: e-smith-apache/e-smith-apache.spec
+diff -u e-smith-apache/root/etc/e-smith/events/actions/logrotate-httpd:1.1 e-smith-apache/root/etc/e-smith/events/actions/logrotate-httpd:removed
+--- e-smith-apache/root/etc/e-smith/events/actions/logrotate-httpd:1.1	Tue Feb 22 17:27:42 2005
++++ e-smith-apache/root/etc/e-smith/events/actions/logrotate-httpd	Wed Dec 31 19:00:00 1969
+@@ -1,59 +0,0 @@
+-#!/usr/bin/perl -w
+-
+-#----------------------------------------------------------------------
+-# copyright (C) 1999-2005 Mitel Networks Corporation
+-# 
+-# This program is free software; you can redistribute it and/or modify
+-# it under the terms of the GNU General Public License as published by
+-# the Free Software Foundation; either version 2 of the License, or
+-# (at your option) any later version.
+-#
+-# This program is distributed in the hope that it will be useful,
+-# but WITHOUT ANY WARRANTY; without even the implied warranty of
+-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-# GNU General Public License for more details.
+-#
+-# You should have received a copy of the GNU General Public License
+-# along with this program; if not, write to the Free Software
+-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+-# 
+-# Technical support for this program is available from Mitel Networks 
+-# Please visit our web site www.mitel.com/sme/ for details.
+-#----------------------------------------------------------------------
+-package esmith;
+-
+-use strict;
+-use Errno;
+-use File::Copy;
+-
+-# Set up filenames to be used by syslog. We first set up symlinks
+-# with known names, then use the value of the symlink when we
+-# expand the configuration files
+-foreach my $file (qw(access_log error_log ssl_engine_log))
+-{
+-    my $time = time();
+-    my $logdir = "/var/log/httpd";
+-
+-    if (-f "${logdir}/${file}" and ! -l "${logdir}/${file}")
+-    {
+-	my ($sec,$min,$hour,$mday,$mon,$year) = localtime($time - 1);
+-	my $target = sprintf("%s.%04d%02d%02d%02d%02d%02d",
+-	$file, $year+1900, $mon+1, $mday, $hour, $min, $sec);
+-	move("${logdir}/${file}", "${logdir}/${target}") or
+-	warn "Could not move ${logdir}/${file} to " .
+-	    "${logdir}/${target}: $!";
+-    }
+-    my ($sec,$min,$hour,$mday,$mon,$year) = localtime($time);
+-    my $target = sprintf("%s.%04d%02d%02d%02d%02d%02d",
+-    $file, $year+1900, $mon+1, $mday, $hour, $min, $sec);
+-
+-    if (-l "${logdir}/${file}")
+-    {
+-	unlink("${logdir}/${file}") or
+-	warn "Could not unlink ${logdir}/${file}: $!";
+-    }
+-    symlink("${target}", "${logdir}/${file}") or
+-    warn "Could not symlink ${target} to ${logdir}/${file}: $!";
+-}
+-
+-exit (0);

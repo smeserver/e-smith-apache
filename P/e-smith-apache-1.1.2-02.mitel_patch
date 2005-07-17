@@ -1,0 +1,6 @@
+Index: e-smith-apache/e-smith-apache.spec
+diff -u e-smith-apache/root/etc/e-smith/db/configuration/defaults/httpd-admin/ValidFrom:1.1 e-smith-apache/root/etc/e-smith/db/configuration/defaults/httpd-admin/ValidFrom:removed
+--- e-smith-apache/root/etc/e-smith/db/configuration/defaults/httpd-admin/ValidFrom:1.1	Wed Nov 17 13:34:18 2004
++++ e-smith-apache/root/etc/e-smith/db/configuration/defaults/httpd-admin/ValidFrom	Wed Dec 31 19:00:00 1969
+@@ -1 +0,0 @@
+-

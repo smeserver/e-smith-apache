@@ -1,0 +1,20 @@
+Index: e-smith-apache/createlinks
+diff -u e-smith-apache/createlinks:1.9 e-smith-apache/createlinks:1.10
+--- e-smith-apache/createlinks:1.9	Mon Feb 23 17:41:42 2004
++++ e-smith-apache/createlinks	Tue Jan 25 15:03:09 2005
+@@ -139,14 +139,6 @@
+ event_link("conf-httpd", $event, "10");
+ 
+ #--------------------------------------------------
+-# actions for post-upgrade event
+-#--------------------------------------------------
+-
+-$event = "service-domain-create";
+-event_link("conf-httpd", $event, "40");
+-event_link("restart-httpd-full", $event, "50");
+-
+-#--------------------------------------------------
+ # set up daemontools
+ #--------------------------------------------------
+ 
+Index: e-smith-apache/e-smith-apache.spec
