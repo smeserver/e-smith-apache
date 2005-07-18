@@ -1,0 +1,229 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/00usedb mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/00usedb
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/00usedb	2003-01-07 08:00:49.000000000 -0700
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/00usedb	1969-12-31 17:00:00.000000000 -0700
+@@ -1,3 +0,0 @@
+-{
+-    use esmith::db;
+-}
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/01localAccessString mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/01localAccessString
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/01localAccessString	2003-07-09 09:35:58.000000000 -0600
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/01localAccessString	2005-07-17 17:18:34.631420568 -0600
+@@ -2,17 +2,12 @@
+     #------------------------------------------------------------
+     # Compute "localAccess" string for use in template below.
+     #------------------------------------------------------------
+-    my %networks;
+-    tie %networks, 'esmith::config', '/home/e-smith/networks';
++    use esmith::NetworksDB;
+ 
+-    use esmith::util;	    
+-    
+-    my @access = esmith::util::computeLocalAccessSpec( $LocalIP, 
+-			$LocalNetmask, \%networks, 'private');
++    my $ndb = esmith::NetworksDB->open_ro();
+ 
+-    $localAccess = "@access";
++    $localAccess = $ndb->local_access_spec();
+     $localAccess =~ s#/255\.255\.255\.255##g;
+ 
+     "";
+ }
+-
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/05NoHostLookups mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/05NoHostLookups
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/05NoHostLookups	2003-01-07 08:00:49.000000000 -0700
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/05NoHostLookups	2005-07-17 17:23:08.286675896 -0600
+@@ -3,5 +3,5 @@
+ # The default is off because it'd be overall better for the net if people
+ # had to knowingly turn this feature on.
+ 
+-HostnameLookups off
++HostnameLookups { $httpd{HostnameLookups} || 'off'; }
+ 
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/05ServerTokens mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/05ServerTokens
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/05ServerTokens	2003-01-07 08:00:49.000000000 -0700
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/05ServerTokens	2005-07-17 17:23:21.014740936 -0600
+@@ -1,5 +1,2 @@
+-{
+-    my $servertokens = db_get_prop($confref, 'httpd', 'ServerTokens') ||
+-    			'ProductOnly';
+-    $OUT = "ServerTokens $servertokens";
+-}
++ServerTokens { $httpd{ServerTokens} || 'ProductOnly'; }
++
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/20LoadModule80mod_perl mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/20LoadModule80mod_perl
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/20LoadModule80mod_perl	2004-11-09 13:36:38.000000000 -0700
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/20LoadModule80mod_perl	2005-07-17 17:24:36.521001104 -0600
+@@ -1,6 +1,6 @@
+ {
+     # vim: ft=perl:
+-    my $status = $modPerl{status} || '';
++    my $status = $modPerl{status} || 'enabled';
+     if ( $status eq "enabled" )
+     {
+ 	$OUT = "LoadModule perl_module        modules/mod_perl.so";
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/20LoadModule80mod_ssl mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/20LoadModule80mod_ssl
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/20LoadModule80mod_ssl	2004-11-09 13:36:38.000000000 -0700
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/20LoadModule80mod_ssl	2005-07-17 17:24:33.209504528 -0600
+@@ -1,14 +1,8 @@
+ {
+-	use esmith::config;
+-	use esmith::db;
+-
+-	my %conf;
+-	tie %conf, 'esmith::config';
+-
+-	my $status = db_get_prop(\%conf, "modSSL", "status");
+-
+-	if (defined $status and $status eq "enabled")
+-	{
+-		$OUT = "LoadModule ssl_module        modules/mod_ssl.so"; 
+-	}
++    # vim: ft=perl:
++    my $status = $modSSL{status} || 'disabled';
++    if ( $status eq "enabled" )
++    {
++	$OUT = "LoadModule ssl_module        modules/mod_ssl.so"; 
++    }
+ }
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35Listen80 mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35Listen80
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35Listen80	2003-01-07 08:00:49.000000000 -0700
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35Listen80	2005-07-17 17:26:18.797372344 -0600
+@@ -1,12 +1,11 @@
+ {
+     my $listen_default = "Listen 0.0.0.0:80";
+ 
+-    my $mode = db_get($confref, "SystemMode") || "serveronly";
++    my $mode = $SystemMode || "serveronly";
+ 
+     return $listen_default if ($mode eq "serveronly");
+ 
+-    my $httpdAccess =
+-	db_get_prop($confref, "httpd-e-smith", "access") || "private";
++    my $httpdAccess = ${'httpd-e-smith'}{access} || 'private';
+ 
+     return $listen_default unless ($httpdAccess eq "private");
+ 
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35ProxyPass mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35ProxyPass
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35ProxyPass	2005-07-17 18:39:37.136044904 -0600
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35ProxyPass	2005-07-17 17:28:08.697306456 -0600
+@@ -40,6 +40,7 @@
+ 	{
+ 	    # Convert from comma separated list to space separated
+ 	    $valid =~ s/,/ /g;
++	    $valid =~ s:/255.255.255.255::g;
+ 	    $OUT .= "    order deny,allow\n";
+ 	    $OUT .= "    deny from all\n";
+ 	    $OUT .= "    allow from $valid\n";
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL00Listen443 mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL00Listen443
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL00Listen443	2003-01-07 08:00:49.000000000 -0700
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL00Listen443	2005-07-17 17:28:49.249665720 -0600
+@@ -1,12 +1,11 @@
+ {
+     my $listen_default = "Listen 0.0.0.0:443";
+ 
+-    my $mode = db_get($confref, "SystemMode") || "serveronly";
++    my $mode = $SystemMode || "serveronly";
+ 
+     return $listen_default if ($mode eq "serveronly");
+ 
+-    my $httpdAccess =
+-	db_get_prop($confref, "httpd-e-smith", "access") || "private";
++    my $httpdAccess = ${'httpd-e-smith'}{access} || 'private';
+ 
+     return $listen_default unless ($httpdAccess eq "private");
+ 
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL10SetEnvIf mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL10SetEnvIf
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL10SetEnvIf	2003-01-24 15:51:59.000000000 -0700
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL10SetEnvIf	2005-07-17 17:29:47.094019768 -0600
+@@ -1,5 +1 @@
+-{
+-    $OUT = <<SSL_END;
+ SetEnvIf User-Agent ".*MSIE.*" nokeepalive ssl-unclean-shutdown downgrade-1.0 force-response-1.0
+-SSL_END
+-}
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL10SSLCertificateFile mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL10SSLCertificateFile
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL10SSLCertificateFile	2003-01-24 15:51:59.000000000 -0700
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL10SSLCertificateFile	2005-07-17 17:30:08.002013776 -0600
+@@ -1,9 +1,6 @@
+ {
+-    my $crt = $modSSL{'crt'} ||
+-	"/home/e-smith/ssl.crt/${SystemName}.${DomainName}.crt";
+-
+-    my $key = $modSSL{'key'} ||
+-	"/home/e-smith/ssl.key/${SystemName}.${DomainName}.key";
++    my $crt = $modSSL{'crt'} || "/home/e-smith/ssl.crt/${SystemName}.${DomainName}.crt";
++    my $key = $modSSL{'key'} || "/home/e-smith/ssl.key/${SystemName}.${DomainName}.key";
+ 	
+     $OUT .= <<SSL_END;
+ SSLCertificateFile $crt
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddTypes05.crl mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddTypes05.crl
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddTypes05.crl	2003-01-07 08:00:49.000000000 -0700
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddTypes05.crl	2005-07-17 17:34:12.936887664 -0600
+@@ -2,16 +2,9 @@
+ #
+ #   MIME-type for downloading CRLs
+ #
+-	use esmith::config;
+-	use esmith::db;
+-
+-	my %conf;
+-	tie %conf, 'esmith::config';
+-	
+-	my $status = db_get_prop(\%conf, "modSSL", "status");
+-
+-	if (defined $status and $status eq "enabled")
+-	{
+-		$OUT = "AddType application/x-pkcs7-crl    .crl\n";
+-	}
++    my $status = $modSSL{status} || 'disabled';
++    if ( $status eq "enabled" )
++    {
++	$OUT = "AddType application/x-pkcs7-crl    .crl\n";
++    }
+ }
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddTypes05.crt mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddTypes05.crt
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddTypes05.crt	2003-01-07 08:00:49.000000000 -0700
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddTypes05.crt	2005-07-17 17:34:24.716868624 -0600
+@@ -2,16 +2,9 @@
+ #
+ #   MIME-type for downloading Certificates
+ #
+-	use esmith::config;
+-	use esmith::db;
+-
+-	my %conf;
+-	tie %conf, 'esmith::config';
+-	
+-	my $status = db_get_prop(\%conf, "modSSL", "status");
+-	
+-	if (defined $status and $status eq "enabled")
+-	{
+-		$OUT .= "AddType application/x-x509-ca-cert .crt\n";
+-	}
++    my $status = $modSSL{status} || 'disabled';
++    if ( $status eq "enabled" )
++    {
++	$OUT .= "AddType application/x-x509-ca-cert .crt\n";
++    }
+ }
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/85ServerResourcesAccess mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/85ServerResourcesAccess
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/85ServerResourcesAccess	2004-05-06 15:11:13.000000000 -0600
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/85ServerResourcesAccess	2005-07-17 17:38:19.616091312 -0600
+@@ -4,10 +4,5 @@
+     Options +Indexes
+     order deny,allow
+     deny from all
+-{
+-    $OUT .= "    allow from $localAccess";
+-    # Add httpd-admin's ValidFrom list.
+-    my @validfrom = split /,/, ${'httpd-admin'}{ValidFrom};
+-    $OUT .= " @validfrom";
+-}
++    allow from { "$localAccess $externalSSLAccess"; }
+ </Directory>
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/03ServerAlias mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/03ServerAlias
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/03ServerAlias	2005-07-17 18:39:37.143043840 -0600
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/03ServerAlias	2005-07-17 17:40:17.887960344 -0600
+@@ -1 +1 @@
+-    ServerAlias { "$virtualHost  $SystemName.$virtualHost" }
++    ServerAlias { "$virtualHost  $SystemName.$virtualHost www.$virtualHost" }

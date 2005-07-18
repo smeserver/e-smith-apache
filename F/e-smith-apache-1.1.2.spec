@@ -26,6 +26,7 @@ Patch13: e-smith-apache-1.1.2-15.mitel_patch
 Patch14: e-smith-apache-1.1.2-16.mitel_patch
 Patch15: e-smith-apache-1.1.2-rewrite.patch
 Patch16: e-smith-apache-1.1.2-copying.patch
+Patch17: e-smith-apache-1.1.2-cleanup.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -44,6 +45,7 @@ e-smith server and gateway software - apache module.
 * Sun Jul 17 2005 Shad L. Lords <slords@mail.com>
 - [1.1.2-16sme01]
 - Cleanup namespace and rewrites 
+- Cleanup code to use new DB interfaces
 
 * Tue Jun 21 2005 Charlie Brady <charlieb@e-smith.com>
 - [1.1.2-16]
@@ -403,6 +405,7 @@ e-smith server and gateway software - apache module.
 %patch14 -p1
 %patch15 -p1
 %patch16 -p1
+%patch17 -p1
 
 %pre
 

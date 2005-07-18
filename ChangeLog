@@ -8,3 +8,8 @@ Cleanup server namespace
 Redo rewrite so they work consistiently
 
 ----------------------------------------------------------------------
+Sun Jul 17 18:53:20 2005                           Shad Lords (slords)
+
+Upgrade to using new db api
+
+----------------------------------------------------------------------
