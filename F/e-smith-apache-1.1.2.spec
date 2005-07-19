@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.1.2
-%define release 16sme01
+%define release 19
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -24,9 +24,9 @@ Patch11: e-smith-apache-1.1.2-13.mitel_patch
 Patch12: e-smith-apache-1.1.2-14.mitel_patch
 Patch13: e-smith-apache-1.1.2-15.mitel_patch
 Patch14: e-smith-apache-1.1.2-16.mitel_patch
-Patch15: e-smith-apache-1.1.2-rewrite.patch
-Patch16: e-smith-apache-1.1.2-copying.patch
-Patch17: e-smith-apache-1.1.2-cleanup.patch
+Patch15: e-smith-apache-1.1.2-17.mitel_patch
+Patch16: e-smith-apache-1.1.2-18.mitel_patch
+Patch17: e-smith-apache-1.1.2-19.mitel_patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -42,10 +42,20 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
-* Sun Jul 17 2005 Shad L. Lords <slords@mail.com>
-- [1.1.2-16sme01]
-- Cleanup namespace and rewrites 
-- Cleanup code to use new DB interfaces
+* Mon Jul 18 2005 Charlie Brady <charlieb@e-smith.com>
+- [1.1.2-19]
+- Patch from Shad: update rewrite and ProxyPass stuff for manager URLs.
+  [SF: 1172203]
+
+* Mon Jul 18 2005 Charlie Brady <charlieb@e-smith.com>
+- [1.1.2-18]
+- Add GPL COPYING file.
+
+* Mon Jul 18 2005 Charlie Brady <charlieb@e-smith.com>
+- [1.1.2-17]
+- Clean up apache templates to use current DB interfaces.
+- Make sure the single host ValidFrom specs for proxypass doesn't
+  upset apache.
 
 * Tue Jun 21 2005 Charlie Brady <charlieb@e-smith.com>
 - [1.1.2-16]
