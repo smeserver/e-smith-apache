@@ -1,6 +1,7 @@
-diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/COPYING mezzanine_patched_e-smith-apache-1.1.2/COPYING
---- e-smith-apache-1.1.2/COPYING	1969-12-31 17:00:00.000000000 -0700
-+++ mezzanine_patched_e-smith-apache-1.1.2/COPYING	2005-07-17 14:39:50.263070064 -0600
+Index: e-smith-apache/COPYING
+diff -u /dev/null e-smith-apache/COPYING:1.1
+--- /dev/null	Mon Jul 18 15:04:17 2005
++++ e-smith-apache/COPYING	Mon Jul 18 15:03:47 2005
 @@ -0,0 +1,340 @@
 +		    GNU GENERAL PUBLIC LICENSE
 +		       Version 2, June 1991
@@ -342,3 +343,4 @@ diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/COPYING mezzanine_patched_
 +consider it more useful to permit linking proprietary applications with the
 +library.  If this is what you want to do, use the GNU Library General
 +Public License instead of this License.
+Index: e-smith-apache/e-smith-apache.spec
