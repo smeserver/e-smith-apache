@@ -1,0 +1,28 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/03ServerAlias mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/03ServerAlias
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/03ServerAlias	2005-07-19 01:01:31.937289864 -0600
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/03ServerAlias	2005-07-19 01:01:18.642311008 -0600
+@@ -1,7 +1,8 @@
+-    ServerAlias { 
++    ServerAlias {
+ 
+     use esmith::HostsDB;
+     my $hdb = esmith::HostsDB->open_ro();
+-    $OUT = join " ", map { $_->key } $hdb->get_hosts_by_domain($virtualHost)
++    my @hosts = grep { $_->prop('HostType') eq 'Self' } $hdb->get_hosts_by_domain($virtualHost);
++    $OUT = join " ", map { $_->key } @hosts;
+ }
+ 
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/03ServerAlias mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/03ServerAlias
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/03ServerAlias	2005-07-19 01:01:31.942289104 -0600
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/03ServerAlias	2005-07-19 01:01:22.210768520 -0600
+@@ -1,7 +1,8 @@
+-    ServerAlias { 
++    ServerAlias {
+ 
+     use esmith::HostsDB;
+     my $hdb = esmith::HostsDB->open_ro();
+-    $OUT = join " ", map { $_->key } $hdb->get_hosts_by_domain($virtualHost)
++    my @hosts = grep { $_->prop('HostType') eq 'Self' } $hdb->get_hosts_by_domain($virtualHost);
++    $OUT = join " ", map { $_->key } @hosts;
+ }
+ 

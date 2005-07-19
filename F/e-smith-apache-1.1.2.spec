@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.1.2
-%define release 19sme01
+%define release 19sme02
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -29,6 +29,7 @@ Patch16: e-smith-apache-1.1.2-18.mitel_patch
 Patch17: e-smith-apache-1.1.2-19.mitel_patch
 Patch18: e-smith-apache-1.1.2-serveralias.patch
 Patch19: e-smith-apache-1.1.2-serveralias.patch2
+Patch20: e-smith-apache-1.1.2-serveralias.patch3
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -44,6 +45,10 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Mon Jul 18 2005 Shad L. Lords <slords@mail.com>
+- [1.1.2-19sme02]
+- Better implementation that include only local hosts
+
 * Mon Jul 18 2005 Shad L. Lords <slords@mail.com>
 - [1.1.2-19sme01]
 - Update server alias to include all local hosts
@@ -424,6 +429,7 @@ e-smith server and gateway software - apache module.
 %patch17 -p1
 %patch18 -p1
 %patch19 -p1
+%patch20 -p1
 
 %pre
 
