@@ -28,6 +28,7 @@ Patch15: e-smith-apache-1.1.2-17.mitel_patch
 Patch16: e-smith-apache-1.1.2-18.mitel_patch
 Patch17: e-smith-apache-1.1.2-19.mitel_patch
 Patch18: e-smith-apache-1.1.2-serveralias.patch
+Patch19: e-smith-apache-1.1.2-serveralias.patch2
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -422,6 +423,7 @@ e-smith server and gateway software - apache module.
 %patch16 -p1
 %patch17 -p1
 %patch18 -p1
+%patch19 -p1
 
 %pre
 
