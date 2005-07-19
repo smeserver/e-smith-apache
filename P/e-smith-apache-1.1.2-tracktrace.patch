@@ -1,0 +1,44 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/70RewriteTraceAndTrack mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/70RewriteTraceAndTrack
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/70RewriteTraceAndTrack	2005-07-19 16:37:32.724514680 -0600
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/70RewriteTraceAndTrack	1969-12-31 17:00:00.000000000 -0700
+@@ -1,8 +0,0 @@
+-{
+-    $OUT = '
+-<IfModule mod_rewrite.c>
+-    RewriteEngine on
+-    RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+-    RewriteRule .* - [F]
+-</IfModule>';
+-}
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/26RewriteTraceAndTrack mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/26RewriteTraceAndTrack
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/26RewriteTraceAndTrack	1969-12-31 17:00:00.000000000 -0700
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/26RewriteTraceAndTrack	2005-07-19 16:34:59.429101960 -0600
+@@ -0,0 +1,4 @@
++    RewriteEngine on
++    RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
++    RewriteRule .* - [F]
++
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/26RewriteTraceAndTrack mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/26RewriteTraceAndTrack
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/26RewriteTraceAndTrack	1969-12-31 17:00:00.000000000 -0700
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/26RewriteTraceAndTrack	2005-07-19 16:34:59.432101504 -0600
+@@ -0,0 +1,4 @@
++    RewriteEngine on
++    RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
++    RewriteRule .* - [F]
++
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/27ManagerProxyPass mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/27ManagerProxyPass
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/27ManagerProxyPass	2005-07-19 16:37:33.046787736 -0600
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/27ManagerProxyPass	2005-07-19 16:34:59.435101048 -0600
+@@ -4,11 +4,7 @@
+     $haveSSL = (exists ${modSSL}{status} and ${modSSL}{status} eq "enabled") ?  'yes' : 'no';
+     $plainTextAccess = ${'httpd-admin'}{PermitPlainTextAccess} || 'no';
+ 
+-    $OUT = <<'HERE';
+-    RewriteEngine on
+-
+-HERE
+-
++    $OUT = '';
+     foreach $place ('server-manager','server-common','user-password')
+     {
+         if (($port eq "80") && ($haveSSL eq 'yes') && ($plainTextAccess ne 'yes'))
