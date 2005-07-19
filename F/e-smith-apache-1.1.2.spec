@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.1.2
-%define release 19sme03
+%define release 19sme04
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -30,7 +30,8 @@ Patch17: e-smith-apache-1.1.2-19.mitel_patch
 Patch18: e-smith-apache-1.1.2-serveralias.patch
 Patch19: e-smith-apache-1.1.2-serveralias.patch2
 Patch20: e-smith-apache-1.1.2-serveralias.patch3
-Patch21:  e-smith-apache-1.1.2-nouserdir.patch
+Patch21: e-smith-apache-1.1.2-nouserdir.patch
+Patch22: e-smith-apache-1.1.2-SSLCipherSuite.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -46,6 +47,10 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Mon Jul 18 2005 Gordon Rowell <gordonr@gormand.com.au>
+- [1.1.2-19sme04]
+- Add template fragment for default set of SSL Ciphers[SF: 1240654]
+
 * Mon Jul 18 2005 Gordon Rowell <gordonr@gormand.com.au>
 - [1.1.2-19sme03]
 - Don't load userdir module by default. It's not used, and causes
@@ -437,6 +442,7 @@ e-smith server and gateway software - apache module.
 %patch19 -p1
 %patch20 -p1
 %patch21 -p1
+%patch22 -p1
 
 %pre
 
