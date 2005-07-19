@@ -54,3 +54,8 @@ Tue Jul 19 01:32:58 2005                       Gordon Rowell (gordonr)
 disable paperbag grade ciphers
 
 ----------------------------------------------------------------------
+Tue Jul 19 01:43:01 2005                       Gordon Rowell (gordonr)
+
+Disable TRACK and TRACE in each virtual domain
+
+----------------------------------------------------------------------

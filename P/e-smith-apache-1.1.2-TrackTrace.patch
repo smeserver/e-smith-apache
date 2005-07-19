@@ -1,0 +1,23 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/70RewriteTraceAndTrack mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/70RewriteTraceAndTrack
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/70RewriteTraceAndTrack	2005-07-19 01:40:49.770448920 -0600
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/70RewriteTraceAndTrack	1969-12-31 17:00:00.000000000 -0700
+@@ -1,8 +0,0 @@
+-{
+-    $OUT = '
+-<IfModule mod_rewrite.c>
+-    RewriteEngine on
+-    RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+-    RewriteRule .* - [F]
+-</IfModule>';
+-}
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/70RewriteTraceAndTrack mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/70RewriteTraceAndTrack
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/70RewriteTraceAndTrack	1969-12-31 17:00:00.000000000 -0700
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/70RewriteTraceAndTrack	2005-07-19 01:40:37.383332048 -0600
+@@ -0,0 +1,7 @@
++{
++    $OUT = '
++        RewriteEngine on
++        RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
++        RewriteRule .* - [F]
++    ';
++}
