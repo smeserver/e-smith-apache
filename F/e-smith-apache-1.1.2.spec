@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.1.2
-%define release 19
+%define release 19sme01
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -27,6 +27,7 @@ Patch14: e-smith-apache-1.1.2-16.mitel_patch
 Patch15: e-smith-apache-1.1.2-17.mitel_patch
 Patch16: e-smith-apache-1.1.2-18.mitel_patch
 Patch17: e-smith-apache-1.1.2-19.mitel_patch
+Patch18: e-smith-apache-1.1.2-serveralias.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -42,6 +43,10 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Mon Jul 18 2005 Shad L. Lords <slords@mail.com>
+- [1.1.2-19sme01]
+- Update server alias to include all local hosts
+
 * Mon Jul 18 2005 Charlie Brady <charlieb@e-smith.com>
 - [1.1.2-19]
 - Patch from Shad: update rewrite and ProxyPass stuff for manager URLs.
@@ -416,6 +421,7 @@ e-smith server and gateway software - apache module.
 %patch15 -p1
 %patch16 -p1
 %patch17 -p1
+%patch18 -p1
 
 %pre
 
