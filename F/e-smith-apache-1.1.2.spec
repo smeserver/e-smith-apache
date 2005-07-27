@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.1.2
-%define release 22
+%define release 22sme01
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -30,6 +30,7 @@ Patch17: e-smith-apache-1.1.2-19.mitel_patch
 Patch18: e-smith-apache-1.1.2-20.mitel_patch
 Patch19: e-smith-apache-1.1.2-21.mitel_patch
 Patch20: e-smith-apache-1.1.2-22.mitel_patch
+Patch21: e-smith-apache-1.1.2-serveralias.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -45,6 +46,10 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Wed Jul 27 2005 Shad L. Lords <slords@mail.com>
+- [1.1.2-22sme01]
+- Update server aliases to reference all local hosts [SF: 1246172]
+
 * Wed Jul 27 2005 Charlie Brady <charlieb@e-smith.com>
 - [1.1.2-22]
 - Disable HTTP TRACK and TRACE in each VirtualDomain (patch by Gordon
@@ -436,6 +441,7 @@ e-smith server and gateway software - apache module.
 %patch18 -p1
 %patch19 -p1
 %patch20 -p1
+%patch21 -p1
 
 %pre
 
