@@ -1,5 +1,0 @@
-diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL10SSLCipherSuite mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL10SSLCipherSuite
---- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL10SSLCipherSuite	1969-12-31 17:00:00.000000000 -0700
-+++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL10SSLCipherSuite	2005-07-19 16:34:59.306120656 -0600
-@@ -0,0 +1 @@
-+SSLCipherSuite ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:-LOW:+SSLv2:-EXP
