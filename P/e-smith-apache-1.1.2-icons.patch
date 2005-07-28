@@ -1,0 +1,16 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/90e-smithAccess10icons mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/90e-smithAccess10icons
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/90e-smithAccess10icons	1969-12-31 17:00:00.000000000 -0700
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/90e-smithAccess10icons	2005-07-28 16:17:59.442336608 -0600
+@@ -0,0 +1,12 @@
++#------------------------------------------------------------
++# icons directory
++#------------------------------------------------------------
++
++<Directory /var/www/icons>
++    Options Indexes
++    AllowOverride None
++    order deny,allow
++    deny from all
++    allow from all
++</Directory>
++
