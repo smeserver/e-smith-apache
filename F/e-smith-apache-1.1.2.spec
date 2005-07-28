@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.1.2
-%define release 22sme02
+%define release 22sme03
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -32,6 +32,8 @@ Patch19: e-smith-apache-1.1.2-21.mitel_patch
 Patch20: e-smith-apache-1.1.2-22.mitel_patch
 Patch21: e-smith-apache-1.1.2-serveralias.patch
 Patch22: e-smith-apache-1.1.2-firewall.patch
+Patch23: e-smith-apache-1.1.2-icons.patch
+Patch24: e-smith-apache-1.1.2-rewrite.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -47,6 +49,11 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Thu Jul 28 2005 Shad L. Lords <slords@mail.com>
+- [1.1.2-22sme03]
+- Add directive for icons directory
+- Fix Rewrite rule to include trailing stuff
+
 * Thu Jul 28 2005 Shad L. Lords <slords@mail.com>
 - [1.1.2-22sme02]
 - Update ProxyPass to use httpd-admin{TCPPort} [SF: 1246986]
@@ -448,6 +455,8 @@ e-smith server and gateway software - apache module.
 %patch20 -p1
 %patch21 -p1
 %patch22 -p1
+%patch23 -p1
+%patch24 -p1
 
 %pre
 

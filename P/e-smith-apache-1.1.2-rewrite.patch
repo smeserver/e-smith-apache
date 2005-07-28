@@ -1,0 +1,12 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/27ManagerProxyPass mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/27ManagerProxyPass
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/27ManagerProxyPass	2005-07-28 16:25:59.966799904 -0600
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/27ManagerProxyPass	2005-07-28 16:21:53.313531944 -0600
+@@ -9,7 +9,7 @@
+     {
+         if (($port eq "80") && ($haveSSL eq 'yes') && ($plainTextAccess ne 'yes'))
+         {
+-            $OUT .= "    RewriteRule ^/$place    https://%{HTTP_HOST}/$place [L,R]\n";
++            $OUT .= "    RewriteRule ^/$place(/.*|\$)    https://%{HTTP_HOST}/$place\$1 [L,R]\n";
+         } else {
+             $OUT .= "    ProxyPass /$place http://127.0.0.1:${'httpd-admin'}{TCPPort}/$place/\n";
+         }

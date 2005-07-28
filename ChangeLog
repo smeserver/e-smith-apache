@@ -95,3 +95,10 @@ Thu Jul 28 12:39:45 2005                           Shad Lords (slords)
 
 
 ----------------------------------------------------------------------
+Thu Jul 28 16:27:44 2005                           Shad Lords (slords)
+
+- Add directive for icons directory
+- Fix Rewrite rule to include trailing stuff
+
+
+----------------------------------------------------------------------
