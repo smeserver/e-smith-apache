@@ -1,0 +1,13 @@
+Index: e-smith-apache/e-smith-apache.spec
+diff -u e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/27ManagerProxyPass:1.11 e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/27ManagerProxyPass:1.12
+--- e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/27ManagerProxyPass:1.11	Wed Aug  3 17:50:12 2005
++++ e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/27ManagerProxyPass	Wed Aug  3 18:27:09 2005
+@@ -9,7 +9,7 @@
+     {
+         if (($port eq "80") && ($haveSSL eq 'yes') && ($plainTextAccess ne 'yes'))
+         {
+-            $OUT .= "    RewriteRule ^/$place    https://%{HTTP_HOST}/$place [L,R]\n";
++            $OUT .= "    RewriteRule ^/$place(/.*|\$)    https://%{HTTP_HOST}/$place\$1 [L,R]\n";
+         } else {
+             $OUT .= "    ProxyPass /$place http://127.0.0.1:${'httpd-admin'}{TCPPort}/$place/\n";
+         }
