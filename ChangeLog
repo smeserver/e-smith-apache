@@ -113,3 +113,9 @@ Thu Aug  4 09:43:41 2005                           Shad Lords (slords)
 Sync with mitel
 
 ----------------------------------------------------------------------
+Thu Aug  4 09:48:48 2005                           Shad Lords (slords)
+
+- Add directive for icons directory
+- Update server aliases to reference all local hosts [SF: 1246172]
+
+----------------------------------------------------------------------
