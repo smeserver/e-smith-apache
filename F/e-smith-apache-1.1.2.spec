@@ -33,7 +33,8 @@ Patch20: e-smith-apache-1.1.2-22.mitel_patch
 Patch21: e-smith-apache-1.1.2-23.mitel_patch
 Patch22: e-smith-apache-1.1.2-24.mitel_patch
 Patch23: e-smith-apache-1.1.2-icons.patch
-Patch24: e-smith-apache-1.1.2-serveralias.patch
+Patch24: e-smith-apache-1.1.2-newline.patch
+Patch25: e-smith-apache-1.1.2-serveralias.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -52,6 +53,7 @@ e-smith server and gateway software - apache module.
 * Thu Aug  4 2005 Shad Lords <slords@mail.com>
 - [1.1.2-24sme01]
 - Add directive for icons directory
+- Fix newlines left on end of icons template
 - Update server aliases to reference all local hosts [SF: 1246172]
 
 * Wed Aug  3 2005 Shad Lords <slords@mail.com>
@@ -457,6 +459,7 @@ e-smith server and gateway software - apache module.
 %patch22 -p1
 %patch23 -p1
 %patch24 -p1
+%patch25 -p1
 
 %pre
 

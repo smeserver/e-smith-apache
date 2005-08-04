@@ -119,3 +119,12 @@ Thu Aug  4 09:48:48 2005                           Shad Lords (slords)
 - Update server aliases to reference all local hosts [SF: 1246172]
 
 ----------------------------------------------------------------------
+Thu Aug  4 10:02:42 2005                           Shad Lords (slords)
+
+- Add directive for icons directory
+- Fix newlines left on end of icons template
+- Update server aliases to reference all local hosts [SF: 1246172]
+
+But include patches this time
+
+----------------------------------------------------------------------
