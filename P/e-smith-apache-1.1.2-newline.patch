@@ -1,9 +1,0 @@
-diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/40ApacheIconAlias mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/40ApacheIconAlias
---- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/40ApacheIconAlias	2005-08-04 10:01:48.967473368 -0600
-+++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/40ApacheIconAlias	2005-08-04 10:00:47.411682816 -0600
-@@ -1,3 +1,3 @@
--    # alias for Apache icons\n";
--    Alias /icons/ /var/www/icons/\n";
-+    # alias for Apache icons
-+    Alias /icons/ /var/www/icons/
- 
