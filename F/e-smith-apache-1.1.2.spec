@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.1.2
-%define release 25
+%define release 26
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -33,6 +33,7 @@ Patch20: e-smith-apache-1.1.2-22.mitel_patch
 Patch21: e-smith-apache-1.1.2-23.mitel_patch
 Patch22: e-smith-apache-1.1.2-24.mitel_patch
 Patch23: e-smith-apache-1.1.2-25.mitel_patch
+Patch24: e-smith-apache-1.1.2-26.mitel_patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -40,6 +41,7 @@ Requires: e-smith-base >= 4.15.1
 Requires: e-smith-lib >= 1.15.1-19
 Requires: e-smith-daemontools >= 1.7.1-01
 Obsoletes: e-smith-proxypass
+Obsoletes: e-smith-apache-proxy
 Conflicts: e-smith-ibays < 1.0.2
 AutoReqProv: no
 BuildRequires: e-smith-devtools >= 1.11.0-12
@@ -48,6 +50,13 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Wed Aug 17 2005 Charlie Brady <charlieb@e-smith.com>
+- [1.1.2-26]
+- Add content from e-smith-apache-proxy, to enable apache to
+  also operate as a non-caching proxy server. Add Obsoletes:
+  header to ensure e-smith-apache-proxy RPM is removed on
+  upgrade.
+
 * Tue Aug  9 2005 Shad Lords <slords@mail.com>
 - [1.1.2-25]
 - Add directive for icons directory
@@ -456,6 +465,7 @@ e-smith server and gateway software - apache module.
 %patch21 -p1
 %patch22 -p1
 %patch23 -p1
+%patch24 -p1
 
 %pre
 
