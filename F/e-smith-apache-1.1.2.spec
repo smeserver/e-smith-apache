@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.1.2
-%define release 26
+%define release 27
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -50,6 +50,9 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Wed Nov 30 2005 Gordon Rowell <gordonr@gormand.com.au> 1.1.2-27
+- Bump release number only
+
 * Wed Aug 17 2005 Charlie Brady <charlieb@e-smith.com>
 - [1.1.2-26]
 - Add content from e-smith-apache-proxy, to enable apache to
