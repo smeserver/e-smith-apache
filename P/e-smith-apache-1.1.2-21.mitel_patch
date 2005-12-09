@@ -1,6 +1,0 @@
-Index: e-smith-apache/e-smith-apache.spec
-diff -u /dev/null e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL10SSLCipherSuite:1.1
---- /dev/null	Wed Jul 27 14:02:36 2005
-+++ e-smith-apache/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL10SSLCipherSuite	Wed Jul 27 14:01:27 2005
-@@ -0,0 +1 @@
-+SSLCipherSuite ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:-LOW:+SSLv2:-EXP
