@@ -1,6 +1,0 @@
-Index: e-smith-apache/e-smith-apache.spec
-diff -u /dev/null e-smith-apache/root/etc/e-smith/db/configuration/defaults/httpd-e-smith/TCPPort:1.1
---- /dev/null	Wed Mar 30 16:34:03 2005
-+++ e-smith-apache/root/etc/e-smith/db/configuration/defaults/httpd-e-smith/TCPPort	Wed Mar 30 16:33:28 2005
-@@ -0,0 +1 @@
-+80
