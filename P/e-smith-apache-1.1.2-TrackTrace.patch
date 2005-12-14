@@ -1,0 +1,12 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/26RewriteTraceAndTrack mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/26RewriteTraceAndTrack
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/26RewriteTraceAndTrack	2005-12-14 21:26:05.424795729 +1100
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/VirtualHosts/26RewriteTraceAndTrack	2005-12-14 21:25:45.024345178 +1100
+@@ -1,4 +1,8 @@
++{
++    $OUT =<<'HERE';
+     RewriteEngine on
+     RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+     RewriteRule .* - [F]
++HERE
++}
+ 

@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.1.2
-%define release 28
+%define release 29
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -35,6 +35,7 @@ Patch22: e-smith-apache-1.1.2-24.mitel_patch
 Patch23: e-smith-apache-1.1.2-25.mitel_patch
 Patch24: e-smith-apache-1.1.2-26.mitel_patch
 Patch25: e-smith-apache-1.1.2-XSL.patch
+Patch26: e-smith-apache-1.1.2-TrackTrace.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -51,6 +52,9 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Wed Dec 14 2005 Gordon Rowell <gordonr@gormand.com.au> 1.1.2-29
+- Use literal HERE document to ensure braces in TRACE/TRACK rewrite [SME: 196]
+
 * Wed Dec 14 2005 Gordon Rowell <gordonr@gormand.com.au> 1.1.2-28
 - Add type for XSL stylesheet (.xsl) files [SME: 76]
 
@@ -474,6 +478,7 @@ e-smith server and gateway software - apache module.
 %patch23 -p1
 %patch24 -p1
 %patch25 -p1
+%patch26 -p1
 
 %pre
 
