@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.1.2
-%define release 29
+%define release 30
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -36,6 +36,7 @@ Patch23: e-smith-apache-1.1.2-25.mitel_patch
 Patch24: e-smith-apache-1.1.2-26.mitel_patch
 Patch25: e-smith-apache-1.1.2-XSL.patch
 Patch26: e-smith-apache-1.1.2-TrackTrace.patch
+Patch27: e-smith-apache-1.1.2-FileETag.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -52,6 +53,9 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Thu Dec 15 2005 Gordon Rowell <gordonr@gormand.com.au> 1.1.2-30
+- Remove inode from FileETag response [SME: 198]
+
 * Wed Dec 14 2005 Gordon Rowell <gordonr@gormand.com.au> 1.1.2-29
 - Use literal HERE document to ensure braces in TRACE/TRACK rewrite [SME: 196]
 
@@ -479,6 +483,7 @@ e-smith server and gateway software - apache module.
 %patch24 -p1
 %patch25 -p1
 %patch26 -p1
+%patch27 -p1
 
 %pre
 
