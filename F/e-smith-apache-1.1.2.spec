@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.1.2
-%define release 31
+%define release 32
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -38,6 +38,7 @@ Patch25: e-smith-apache-1.1.2-XSL.patch
 Patch26: e-smith-apache-1.1.2-TrackTrace.patch
 Patch27: e-smith-apache-1.1.2-FileETag.patch
 Patch28: e-smith-apache-1.1.2-CipherSuite.patch
+Patch29: e-smith-apache-1.1.2-CipherSuite.patch2
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -54,8 +55,13 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Thu Dec 15 2005 Gordon Rowell <gordonr@gormand.com.au> 1.1.2-32
+- Change default CipherSuite [SME: 194]
+  Was: ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:-LOW:+SSLv2:-EXP
+  Is: ALL:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM
+
 * Thu Dec 15 2005 Gordon Rowell <gordonr@gormand.com.au> 1.1.2-31
-- Moved SSL CipherSuite into db default - modSSL{CipherSuite} [SME; 194]
+- Moved SSL CipherSuite into db default - modSSL{CipherSuite} [SME: 194]
 
 * Thu Dec 15 2005 Gordon Rowell <gordonr@gormand.com.au> 1.1.2-30
 - Remove inode from FileETag response [SME: 198]
@@ -489,6 +495,7 @@ e-smith server and gateway software - apache module.
 %patch26 -p1
 %patch27 -p1
 %patch28 -p1
+%patch29 -p1
 
 %pre
 
