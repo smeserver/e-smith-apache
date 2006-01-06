@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.1.2
-%define release 33
+%define release 34
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -40,6 +40,7 @@ Patch27: e-smith-apache-1.1.2-FileETag.patch
 Patch28: e-smith-apache-1.1.2-CipherSuite.patch
 Patch29: e-smith-apache-1.1.2-CipherSuite.patch2
 Patch30: e-smith-apache-1.1.2-CipherSuite.patch3
+Patch31: e-smith-apache-1.1.2-SVG.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -56,6 +57,9 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Fri Jan 6 2006 Gordon Rowell <gordonr@gormand.com.au> 1.1.2-34
+- Add SVG filetype [SME: 374]
+
 * Thu Dec 15 2005 Gordon Rowell <gordonr@gormand.com.au> 1.1.2-33
 - And relocate the modSSL{CipherSuite} default to e-smith-base with
   the other modSSL defaults [SME: 194]
@@ -502,6 +506,7 @@ e-smith server and gateway software - apache module.
 %patch28 -p1
 %patch29 -p1
 %patch30 -p1
+%patch31 -p1
 
 %pre
 
