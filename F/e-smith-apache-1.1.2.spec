@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.1.2
-%define release 34
+%define release 35
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -41,6 +41,7 @@ Patch28: e-smith-apache-1.1.2-CipherSuite.patch
 Patch29: e-smith-apache-1.1.2-CipherSuite.patch2
 Patch30: e-smith-apache-1.1.2-CipherSuite.patch3
 Patch31: e-smith-apache-1.1.2-SVG.patch
+Patch32: e-smith-apache-1.1.2-modPerldisabled.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -57,6 +58,10 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Tue Jan 31 2006 Gavin Weight <gweight@gmail.com> 1.1.2-35
+- Change modPerl from enabled to disabled [SME: 575]
+
+
 * Fri Jan 6 2006 Gordon Rowell <gordonr@gormand.com.au> 1.1.2-34
 - Add SVG filetype [SME: 374]
 
@@ -507,6 +512,7 @@ e-smith server and gateway software - apache module.
 %patch29 -p1
 %patch30 -p1
 %patch31 -p1
+%patch32 -p1
 
 %pre
 
