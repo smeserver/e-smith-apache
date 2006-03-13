@@ -1,0 +1,17 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/05NoHostLookups mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/05NoHostLookups
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/05NoHostLookups	2006-03-13 11:24:25.000000000 -0500
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/05NoHostLookups	2006-03-13 11:22:17.000000000 -0500
+@@ -3,5 +3,5 @@
+ # The default is off because it'd be overall better for the net if people
+ # had to knowingly turn this feature on.
+ 
+-HostnameLookups { $httpd{HostnameLookups} || 'off'; }
++HostnameLookups { ${'httpd-e-smith'}{HostnameLookups} || 'off'; }
+ 
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/05ServerTokens mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/05ServerTokens
+--- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/05ServerTokens	2006-03-13 11:24:25.000000000 -0500
++++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/05ServerTokens	2006-03-13 11:22:53.000000000 -0500
+@@ -1,2 +1,2 @@
+-ServerTokens { $httpd{ServerTokens} || 'ProductOnly'; }
++ServerTokens { ${'httpd-e-smith'}{ServerTokens} || 'ProductOnly'; }
+ 

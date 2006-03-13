@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.1.2
-%define release 36
+%define release 37
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -43,6 +43,7 @@ Patch30: e-smith-apache-1.1.2-CipherSuite.patch3
 Patch31: e-smith-apache-1.1.2-SVG.patch
 Patch32: e-smith-apache-1.1.2-modPerldisabled.patch
 Patch33: e-smith-apache-1.1.2-HTAccess.patch
+Patch34: e-smith-apache-1.1.2-httpd_props.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -59,6 +60,10 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Mon Mar 13 2006 Charlie Brady <charlie_brady@mitel.com> 1.1.2-37
+- Fix lookup of 'httpd' props in a few templates. Service name is
+  httpd-e-smith. [SME: 1029]
+
 * Fri Feb 10 2006 Gordon Rowell <gordonr@gormand.com.au> 1.1.2-36
 - Deny access to files starting with .ht typically
   .htaccess and .htpasswd [SME: 716]
@@ -518,6 +523,7 @@ e-smith server and gateway software - apache module.
 %patch31 -p1
 %patch32 -p1
 %patch33 -p1
+%patch34 -p1
 
 %pre
 
