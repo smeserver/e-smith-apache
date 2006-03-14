@@ -1,49 +1,14 @@
 Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
-%define version 1.1.2
-%define release 37
+%define version 1.2.0
+%define release 01
 Version: %{version}
 Release: %{release}
 License: GPL
 Vendor: Mitel Networks Corporation
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
-Patch0: e-smith-apache-1.1.2-02.mitel_patch
-Patch1: e-smith-apache-1.1.2-03.mitel_patch
-Patch2: e-smith-apache-1.1.2-04.mitel_patch
-Patch3: e-smith-apache-1.1.2-05.mitel_patch
-Patch4: e-smith-apache-1.1.2-06.mitel_patch
-Patch5: e-smith-apache-1.1.2-07.mitel_patch
-Patch6: e-smith-apache-1.1.2-08.mitel_patch
-Patch7: e-smith-apache-1.1.2-09.mitel_patch
-Patch8: e-smith-apache-1.1.2-10.mitel_patch
-Patch9: e-smith-apache-1.1.2-11.mitel_patch
-Patch10: e-smith-apache-1.1.2-12.mitel_patch
-Patch11: e-smith-apache-1.1.2-13.mitel_patch
-Patch12: e-smith-apache-1.1.2-14.mitel_patch
-Patch13: e-smith-apache-1.1.2-15.mitel_patch
-Patch14: e-smith-apache-1.1.2-16.mitel_patch
-Patch15: e-smith-apache-1.1.2-17.mitel_patch
-Patch16: e-smith-apache-1.1.2-18.mitel_patch
-Patch17: e-smith-apache-1.1.2-19.mitel_patch
-Patch18: e-smith-apache-1.1.2-20.mitel_patch
-Patch19: e-smith-apache-1.1.2-21.mitel_patch
-Patch20: e-smith-apache-1.1.2-22.mitel_patch
-Patch21: e-smith-apache-1.1.2-23.mitel_patch
-Patch22: e-smith-apache-1.1.2-24.mitel_patch
-Patch23: e-smith-apache-1.1.2-25.mitel_patch
-Patch24: e-smith-apache-1.1.2-26.mitel_patch
-Patch25: e-smith-apache-1.1.2-XSL.patch
-Patch26: e-smith-apache-1.1.2-TrackTrace.patch
-Patch27: e-smith-apache-1.1.2-FileETag.patch
-Patch28: e-smith-apache-1.1.2-CipherSuite.patch
-Patch29: e-smith-apache-1.1.2-CipherSuite.patch2
-Patch30: e-smith-apache-1.1.2-CipherSuite.patch3
-Patch31: e-smith-apache-1.1.2-SVG.patch
-Patch32: e-smith-apache-1.1.2-modPerldisabled.patch
-Patch33: e-smith-apache-1.1.2-HTAccess.patch
-Patch34: e-smith-apache-1.1.2-httpd_props.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -60,6 +25,9 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Tue Mar 14 2006 Charlie Brady <charlie_brady@mitel.com> 1.2.0-01
+- Roll stable stream version. [SME: 1016]
+
 * Mon Mar 13 2006 Charlie Brady <charlie_brady@mitel.com> 1.1.2-37
 - Fix lookup of 'httpd' props in a few templates. Service name is
   httpd-e-smith. [SME: 1029]
@@ -489,41 +457,6 @@ e-smith server and gateway software - apache module.
 
 %prep
 %setup
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
-%patch9 -p1
-%patch10 -p1
-%patch11 -p1
-%patch12 -p1
-%patch13 -p1
-%patch14 -p1
-%patch15 -p1
-%patch16 -p1
-%patch17 -p1
-%patch18 -p1
-%patch19 -p1
-%patch20 -p1
-%patch21 -p1
-%patch22 -p1
-%patch23 -p1
-%patch24 -p1
-%patch25 -p1
-%patch26 -p1
-%patch27 -p1
-%patch28 -p1
-%patch29 -p1
-%patch30 -p1
-%patch31 -p1
-%patch32 -p1
-%patch33 -p1
-%patch34 -p1
 
 %pre
 
