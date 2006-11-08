@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.2.0
-%define release 02
+%define release 03
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -10,6 +10,7 @@ Vendor: Mitel Networks Corporation
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
 Patch0: e-smith-apache-1.2.0-ProxyPassVirtualHosts.patch
+Patch1: e-smith-apache-1.2.0-no_ManagerProxyPass.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -26,6 +27,9 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Wed Nov 08 2006 Charlie Brady <charlie_brady@mitel.com> 1.2.0-03
+- Remove manager proxy pass fragment - moved to e-smith-manager.
+
 * Sat Jul 15 2006 Charlie Brady <charlie_brady@mitel.com> 1.2.0-02
 - Add ProxyPassReverse directives to allow redirects to work for proxy-
   passed virtual domains. Also proxy pass https to https. [SME: 1735]
@@ -463,6 +467,7 @@ e-smith server and gateway software - apache module.
 %prep
 %setup
 %patch0 -p1
+%patch1 -p1
 
 %pre
 
