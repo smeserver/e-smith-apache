@@ -1,6 +1,0 @@
-diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/db/configuration/defaults/modSSL/CipherSuite mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/db/configuration/defaults/modSSL/CipherSuite
---- e-smith-apache-1.1.2/root/etc/e-smith/db/configuration/defaults/modSSL/CipherSuite	2005-12-15 11:11:27.275550179 +1100
-+++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/db/configuration/defaults/modSSL/CipherSuite	2005-12-15 11:11:12.909049788 +1100
-@@ -1 +1 @@
--ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:-LOW:+SSLv2:-EXP
-+ALL:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM

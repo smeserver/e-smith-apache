@@ -1,8 +1,0 @@
-diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/80DenyHTAccess mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/80DenyHTAccess
---- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/80DenyHTAccess	1970-01-01 10:00:00.000000000 +1000
-+++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/80DenyHTAccess	2006-02-10 17:47:18.251392799 +1100
-@@ -0,0 +1,4 @@
-+<FilesMatch "^\.ht">
-+    Order allow,deny
-+    Deny from all
-+</FilesMatch>

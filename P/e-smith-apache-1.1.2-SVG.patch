@@ -1,5 +1,0 @@
-diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.svg mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.svg
---- e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.svg	1970-01-01 10:00:00.000000000 +1000
-+++ mezzanine_patched_e-smith-apache-1.1.2/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.svg	2006-01-07 01:07:20.139674840 +1100
-@@ -0,0 +1 @@
-+AddType image/svg+xml	 .svg
