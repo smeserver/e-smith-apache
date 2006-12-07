@@ -2,16 +2,16 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.2.0
-%define release 04
+%define release 5
 Version: %{version}
-Release: %{release}
+Release: %smerelease %{release}
+Packager: %{_packager}
 License: GPL
 Vendor: Mitel Networks Corporation
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
 Patch0: e-smith-apache-1.2.0-ProxyPassVirtualHosts.patch
 Patch1: e-smith-apache-1.2.0-no_ManagerProxyPass.patch
-Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.15.1
@@ -28,6 +28,10 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Thu Dec 07 2006 Shad L. Lords <slords@mail.com>
+- Update to new release naming.  No functional changes.
+- Make Packager generic
+
 * Wed Nov 29 2006 Gordon Rowell <gordonr@gormand.com.au> 1.2.0-04
 - Revert last change [SME: 2109]
 - TODO: Split dev stream for that change
