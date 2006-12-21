@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.2.0
-%define release 5
+%define release 6
 Version: %{version}
 Release: %smerelease %{release}
 Packager: %{_packager}
@@ -12,6 +12,7 @@ Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
 Patch0: e-smith-apache-1.2.0-ProxyPassVirtualHosts.patch
 Patch1: e-smith-apache-1.2.0-no_ManagerProxyPass.patch
+Patch2: e-smith-apache-1.2.0-SSLCertificateChainFile.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.15.1
@@ -28,6 +29,9 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Thu Dec 21 2006 Gordon Rowell <gordonr@gormand.com.au> 1.2.0-6
+- Add support for optional modSSL{CertificateChainFile} [SME: 1779]
+
 * Thu Dec 07 2006 Shad L. Lords <slords@mail.com>
 - Update to new release naming.  No functional changes.
 - Make Packager generic
@@ -478,6 +482,7 @@ e-smith server and gateway software - apache module.
 %setup
 %patch0 -p1
 # %patch1 -p1 - Not applied - [SME: 2109]
+%patch2 -p1
 
 %pre
 
