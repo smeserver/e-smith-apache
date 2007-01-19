@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.2.0
-%define release 6
+%define release 7
 Version: %{version}
 Release: %smerelease %{release}
 Packager: %{_packager}
@@ -13,6 +13,7 @@ Source: %{name}-%{version}.tar.gz
 Patch0: e-smith-apache-1.2.0-ProxyPassVirtualHosts.patch
 Patch1: e-smith-apache-1.2.0-no_ManagerProxyPass.patch
 Patch2: e-smith-apache-1.2.0-SSLCertificateChainFile.patch
+Patch3: e-smith-apache-1.2.0-logrotate.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.15.1
@@ -29,6 +30,9 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Fri Jan 19 2007 Gordon Rowell <gordonr@gormand.com.au> 1.2.0-7
+- Move logrotate fragments from e-smith-base.
+
 * Thu Dec 21 2006 Gordon Rowell <gordonr@gormand.com.au> 1.2.0-6
 - Add support for optional modSSL{CertificateChainFile} [SME: 1779]
 
@@ -494,6 +498,9 @@ mkdir -p root/service
 ln -s /var/service/httpd-e-smith root/service/httpd-e-smith
 mkdir -p root/var/service/httpd-e-smith/supervise
 touch root/var/service/httpd-e-smith/down
+
+mkdir -p root/var/state/httpd
+ln -s ../../var/state/httpd root/etc/httpd/state
 
 %install
 rm -rf $RPM_BUILD_ROOT
