@@ -499,6 +499,7 @@ ln -s /var/service/httpd-e-smith root/service/httpd-e-smith
 mkdir -p root/var/service/httpd-e-smith/supervise
 touch root/var/service/httpd-e-smith/down
 
+mkdir -p root/etc/httpd
 mkdir -p root/var/state/httpd
 ln -s ../../var/state/httpd root/etc/httpd/state
 
