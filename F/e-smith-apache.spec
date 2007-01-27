@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.2.0
-%define release 7
+%define release 8
 Version: %{version}
 Release: %smerelease %{release}
 Packager: %{_packager}
@@ -22,7 +22,6 @@ Requires: e-smith-daemontools >= 1.7.1-01
 Obsoletes: e-smith-proxypass
 Obsoletes: e-smith-apache-proxy
 Conflicts: e-smith-ibays < 1.0.2
-Conflicts: e-smith-manager >= 1.13.1
 AutoReqProv: no
 BuildRequires: e-smith-devtools >= 1.11.0-12
 
@@ -30,6 +29,9 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Sat Jan 27 2007 Shad L. Lords <slords@mail.com> 1.2.0-8
+- Remove proxypass fragment (now in e-smith-manager)
+
 * Fri Jan 19 2007 Gordon Rowell <gordonr@gormand.com.au> 1.2.0-7
 - Move logrotate fragments from e-smith-base.
 
@@ -485,7 +487,7 @@ e-smith server and gateway software - apache module.
 %prep
 %setup
 %patch0 -p1
-# %patch1 -p1 - Not applied - [SME: 2109]
+%patch1 -p1
 %patch2 -p1
 
 %pre
