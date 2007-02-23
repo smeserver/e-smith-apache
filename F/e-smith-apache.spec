@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.2.0
-%define release 9
+%define release 10
 Version: %{version}
 Release: %smerelease %{release}
 Packager: %{_packager}
@@ -15,6 +15,7 @@ Patch1: e-smith-apache-1.2.0-no_ManagerProxyPass.patch
 Patch2: e-smith-apache-1.2.0-SSLCertificateChainFile.patch
 Patch3: e-smith-apache-1.2.0-logrotate.patch
 Patch4: e-smith-apache-1.2.0-load_module.patch
+Patch5: e-smith-apache-1.2.0-skipdomain.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.15.1
@@ -30,11 +31,17 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Fri Feb 23 2007 Shad L. Lords <slords@mail.com> 1.2.0-10
+- Don't include host if domain exists [SME: 2307]
+
 * Tue Feb 13 2007 Charlie Brady <charlie_brady@mitel.com> 1.2.0-9
 - Gracefully handle differences in module names between apache
   versions. [SME: 2471]
 - Add logrotate changes which should have been in 1.2.0-7 (patch
   was provided but not applied).
+
+* Sat Jan 27 2007 Shad L. Lords <slords@mail.com> 1.2.0-8
+- Remove proxypass fragment (now in e-smith-manager)
 
 * Sat Jan 27 2007 Shad L. Lords <slords@mail.com> 1.2.0-8
 - Remove proxypass fragment (now in e-smith-manager)
@@ -498,6 +505,7 @@ e-smith server and gateway software - apache module.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %pre
 
