@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.2.0
-%define release 10
+%define release 11
 Version: %{version}
 Release: %smerelease %{release}
 Packager: %{_packager}
@@ -31,6 +31,9 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Fri Feb 23 2007 Shad L. Lords <slords@mail.com> 1.2.0-11
+- Fix patch so template expands [SME: 2307]
+
 * Fri Feb 23 2007 Shad L. Lords <slords@mail.com> 1.2.0-10
 - Don't include host if domain exists [SME: 2307]
 
