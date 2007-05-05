@@ -4,10 +4,8 @@ Name: %{name}
 %define version 1.2.0
 %define release 11
 Version: %{version}
-Release: %smerelease %{release}
-Packager: %{_packager}
+Release: %{release}%{?dist}
 License: GPL
-Vendor: Mitel Networks Corporation
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
 Patch0: e-smith-apache-1.2.0-ProxyPassVirtualHosts.patch
@@ -31,6 +29,9 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Sun Apr 29 2007 Shad L. Lords <slords@mail.com>
+- Clean up spec so package can be built by koji/plague
+
 * Fri Feb 23 2007 Shad L. Lords <slords@mail.com> 1.2.0-11
 - Fix patch so template expands [SME: 2307]
 
