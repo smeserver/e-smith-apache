@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.2.0
-%define release 11
+%define release 12
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -14,6 +14,7 @@ Patch2: e-smith-apache-1.2.0-SSLCertificateChainFile.patch
 Patch3: e-smith-apache-1.2.0-logrotate.patch
 Patch4: e-smith-apache-1.2.0-load_module.patch
 Patch5: e-smith-apache-1.2.0-skipdomain.patch
+Patch6: e-smith-apache-1.2.0-lib64.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.15.1
@@ -29,6 +30,9 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Fri May 18 2007 Shad L. Lords <slords@mail.com> 1.2.0-12
+- Use correct lib for modules
+
 * Sun Apr 29 2007 Shad L. Lords <slords@mail.com>
 - Clean up spec so package can be built by koji/plague
 
@@ -510,6 +514,7 @@ e-smith server and gateway software - apache module.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %pre
 
