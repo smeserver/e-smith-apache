@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.2.0
-%define release 12
+%define release 13
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -30,6 +30,9 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Wed Jun 6 2007 Shad L. Lords <slords@mail.com> 1.2.0-13
+- Fix patch to exclude hosts if domains exist [SME: 2307]
+
 * Fri May 18 2007 Shad L. Lords <slords@mail.com> 1.2.0-12
 - Use correct lib for modules
 
