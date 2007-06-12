@@ -1,0 +1,13 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.2.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/ProxyPassContent mezzanine_patched_e-smith-apache-1.2.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/ProxyPassContent
+--- e-smith-apache-1.2.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/ProxyPassContent	2006-03-14 11:47:17.000000000 -0500
++++ mezzanine_patched_e-smith-apache-1.2.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/ProxyPassVirtualHosts/ProxyPassContent	2006-07-15 19:01:18.000000000 -0400
+@@ -4,5 +4,8 @@
+     my $d = $db->get($virtualHost);
+     my $t = $d->prop('ProxyPassTarget');
+ 
+-    $OUT = "    ProxyPass / $t";
++    $t =~ s|http://|https://| if ($port eq "443");
++
++    $OUT .= "    ProxyPass / $t\n";
++    $OUT .= "    ProxyPassReverse / $t";
+ }
