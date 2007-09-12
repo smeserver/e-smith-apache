@@ -1,0 +1,8 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.2.0/root/etc/e-smith/templates/etc/logrotate.d/httpd/00notused mezzanine_patched_e-smith-apache-1.2.0/root/etc/e-smith/templates/etc/logrotate.d/httpd/00notused
+--- e-smith-apache-1.2.0/root/etc/e-smith/templates/etc/logrotate.d/httpd/00notused	1969-12-31 17:00:00.000000000 -0700
++++ mezzanine_patched_e-smith-apache-1.2.0/root/etc/e-smith/templates/etc/logrotate.d/httpd/00notused	2007-09-11 15:32:19.000000000 -0600
+@@ -0,0 +1,4 @@
++#
++# We do not use logrotate to rotate apache controlled logfiles,
++# we reconfigure apache instead. No action required here.
++#
