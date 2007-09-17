@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.2.0
-%define release 13
+%define release 15
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -15,6 +15,8 @@ Patch3: e-smith-apache-1.2.0-logrotate.patch
 Patch4: e-smith-apache-1.2.0-load_module.patch
 Patch5: e-smith-apache-1.2.0-skipdomain.patch
 Patch6: e-smith-apache-1.2.0-lib64.patch
+Patch7: e-smith-apache-1.2.0-rename_apache2httpd.patch
+Patch8: e-smith-apache-1.2.0-create_httpd_logrotate.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.15.1
@@ -30,6 +32,12 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Tue Sep 11 2007 Gavin Weight <gweight@gmail.com> 1.2.0-15
+- Create/Move httpd logrotate.d directory. [SME: 3380]
+
+* Tue Sep 11 2007 Gavin Weight <gweight@gmail.com> 1.2.0-14
+- Rename apache to httpd in templates2expand. [SME: 3380]
+
 * Wed Jun 6 2007 Shad L. Lords <slords@mail.com> 1.2.0-13
 - Fix patch to exclude hosts if domains exist [SME: 2307]
 
@@ -518,6 +526,8 @@ e-smith server and gateway software - apache module.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
+%patch8 -p1
 
 %pre
 
