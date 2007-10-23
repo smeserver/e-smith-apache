@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 1.2.0
-%define release 15
+%define release 16
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -17,6 +17,7 @@ Patch5: e-smith-apache-1.2.0-skipdomain.patch
 Patch6: e-smith-apache-1.2.0-lib64.patch
 Patch7: e-smith-apache-1.2.0-rename_apache2httpd.patch
 Patch8: e-smith-apache-1.2.0-create_httpd_logrotate.patch
+Patch9: e-smith-apache-1.2.0-SSLProxyPass.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.15.1
@@ -32,6 +33,9 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Tue Oct 23 2007 Filippo Carletti <filippo.carletti@gmail.com> 1.2.0-16
+- Add SSL support to ProxyPass. [SME: 3481]
+
 * Tue Sep 11 2007 Gavin Weight <gweight@gmail.com> 1.2.0-15
 - Create/Move httpd logrotate.d directory. [SME: 3380]
 
@@ -528,6 +532,7 @@ e-smith server and gateway software - apache module.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 %pre
 
