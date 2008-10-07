@@ -1,23 +1,13 @@
 Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
-%define version 1.2.0
-%define release 16
+%define version 2.0.0
+%define release 1
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
-Patch0: e-smith-apache-1.2.0-ProxyPassVirtualHosts.patch
-Patch1: e-smith-apache-1.2.0-no_ManagerProxyPass.patch
-Patch2: e-smith-apache-1.2.0-SSLCertificateChainFile.patch
-Patch3: e-smith-apache-1.2.0-logrotate.patch
-Patch4: e-smith-apache-1.2.0-load_module.patch
-Patch5: e-smith-apache-1.2.0-skipdomain.patch
-Patch6: e-smith-apache-1.2.0-lib64.patch
-Patch7: e-smith-apache-1.2.0-rename_apache2httpd.patch
-Patch8: e-smith-apache-1.2.0-create_httpd_logrotate.patch
-Patch9: e-smith-apache-1.2.0-SSLProxyPass.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.15.1
@@ -33,6 +23,9 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Tue Oct 7 2008 Shad L. Lords <slords@mail.com> 2.0.0-1.sme
+- Roll new stream to separate sme7/sme8 trees [SME: 4633]
+
 * Tue Oct 23 2007 Filippo Carletti <filippo.carletti@gmail.com> 1.2.0-16
 - Add SSL support to ProxyPass. [SME: 3481]
 
@@ -523,16 +516,6 @@ e-smith server and gateway software - apache module.
 
 %prep
 %setup
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
-%patch9 -p1
 
 %pre
 
