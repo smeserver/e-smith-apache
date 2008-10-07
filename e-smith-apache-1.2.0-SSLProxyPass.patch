@@ -1,6 +1,0 @@
-diff -Nur -x '*.orig' -x '*.rej' e-smith-apache-1.2.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL07SSLProxyEngine mezzanine_patched_e-smith-apache-1.2.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL07SSLProxyEngine
---- e-smith-apache-1.2.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL07SSLProxyEngine	1969-12-31 17:00:00.000000000 -0700
-+++ mezzanine_patched_e-smith-apache-1.2.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL07SSLProxyEngine	2007-10-23 04:44:51.000000000 -0600
-@@ -0,0 +1,2 @@
-+SSLProxyEngine On
-+
