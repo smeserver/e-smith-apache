@@ -2,12 +2,13 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 2.2.0
-%define release 1
+%define release 2
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
+Patch0: e-smith-apache-2.2.0-AddOffice2007MIMETypes.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.15.1
@@ -23,6 +24,9 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Tue Dec 2 2008 Jonathan Martens <smeserver-contribs@snetram.nl> 2.2.0-2.sme
+- Add Microsoft Office 2007 MIME types [SME: 4548]
+
 * Tue Oct 7 2008 Shad L. Lords <slords@mail.com> 2.2.0-1.sme
 - Roll new stream to separate sme7/sme8 trees [SME: 4633]
 
@@ -516,6 +520,7 @@ e-smith server and gateway software - apache module.
 
 %prep
 %setup
+%patch0 -p1
 
 %pre
 
