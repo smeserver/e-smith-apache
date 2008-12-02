@@ -1,0 +1,116 @@
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.xltm.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.xltm	2008-12-02 13:39:18.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office Excel 2007 macro-enabled workbook template
++application/vnd.ms-excel.template.macroEnabled.12 .xltm
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.docm.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.docm	2008-12-02 13:34:50.000000000 +0100
+@@ -0,0 +1,3 @@
++# Microsoft Office Word 2007 macro-enabled document
++application/vnd.ms-word.document.macroEnabled.12 .docm 
++
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.docx.AddOffice2007MIMETypes	2008-12-02 13:33:07.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.docx	2008-12-02 13:35:06.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office Word 2007 document
++application/vnd.openxmlformats-officedocument.wordprocessingml.document .docx
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.onetoc.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.onetoc	2008-12-02 13:36:05.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office OneNote 2007 TOC
++application/onenote .onetoc
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.dotx.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.dotx	2008-12-02 13:35:31.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office Word 2007 template
++application/vnd.openxmlformats-officedocument.wordprocessingml.template .dotx
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.ppsm.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.ppsm	2008-12-02 13:37:03.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office PowerPoint 2007 macro-enabled slide show
++application/vnd.ms-powerpoint.slideshow.macroEnabled.12 .ppsm
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.onetmp.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.onetmp	2008-12-02 13:35:44.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office OneNote 2007 temporary file
++application/onenote .onetmp
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.potx.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.potx	2008-12-02 13:36:33.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office PowerPoint 2007 template
++application/vnd.openxmlformats-officedocument.presentationml.template .potx
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.xlsx.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.xlsx	2008-12-02 13:39:06.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office Excel 2007 workbook
++application/vnd.openxmlformats-officedocument.spreadsheetml.sheet .xlsx
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.pptm.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.pptm	2008-12-02 13:37:21.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office PowerPoint 2007 macro-enabled presentation
++application/vnd.ms-powerpoint.presentation.macroEnabled.12 .pptm
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.xlsb.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.xlsb	2008-12-02 13:38:43.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office Excel 2007 binary workbook
++application/vnd.ms-excel.sheet.binary.macroEnabled.12 .xlsb
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.onetoc2.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.onetoc2	2008-12-02 13:35:55.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office OneNote 2007 TOC
++application/onenote .onetoc2
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.pptx.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.pptx	2008-12-02 13:37:36.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office PowerPoint 2007 presentation
++application/vnd.openxmlformats-officedocument.presentationml.presentation .pptx
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.potm.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.potm	2008-12-02 13:36:23.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office PowerPoint 2007 macro-enabled presentation template
++application/vnd.ms-powerpoint.template.macroEnabled.12 .potm
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.xlsm.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.xlsm	2008-12-02 13:38:55.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office Excel 2007 macro-enabled workbook
++application/vnd.ms-excel.sheet.macroEnabled.12 .xlsm
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.ppam.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.ppam	2008-12-02 13:36:42.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office PowerPoint 2007 add-in
++application/vnd.ms-powerpoint.addin.macroEnabled.12 .ppam
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.sldx.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.sldx	2008-12-02 13:38:07.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office PowerPoint 2007 slide
++application/vnd.openxmlformats-officedocument.presentationml.slide .sldx
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.ppsx.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.ppsx	2008-12-02 13:37:11.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office PowerPoint 2007 slide show
++application/vnd.openxmlformats-officedocument.presentationml.slideshow .ppsx
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.xlam.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.xlam	2008-12-02 13:38:33.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office Excel 2007 add-in
++application/vnd.ms-excel.addin.macroEnabled.12 .xlam
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.dotm.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.dotm	2008-12-02 13:35:19.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office Word 2007 macro-enabled document template
++application/vnd.ms-word.template.macroEnabled.12 .dotm
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.sldm.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.sldm	2008-12-02 13:37:57.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office PowerPoint 2007 macro-enabled slide
++application/vnd.ms-powerpoint.slide.macroEnabled.12 .sldm
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.thmx.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.thmx	2008-12-02 13:38:21.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office PowerPoint 2007 macro-enabled slide
++application/vnd.ms-powerpoint.slide.macroEnabled.12 .thmx
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.xltx.AddOffice2007MIMETypes	2008-12-02 13:33:08.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.xltx	2008-12-02 13:39:27.000000000 +0100
+@@ -0,0 +1,2 @@
++# Microsoft Office Excel 2007 template
++application/vnd.openxmlformats-officedocument.spreadsheetml.template .xltx
