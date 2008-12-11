@@ -24,7 +24,7 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
-* Tue Dec 2 2008 Jonathan Martens <smeserver-contribs@snetram.nl> 2.0.0-3.sme
+* Thu Dec 11 2008 Jonathan Martens <smeserver-contribs@snetram.nl> 2.0.0-3.sme
 - Fix issues in patch that adds Microsoft Office 2007 MIME types [SME: 4548]
 
 * Tue Dec 2 2008 Jonathan Martens <smeserver-contribs@snetram.nl> 2.0.0-2.sme
