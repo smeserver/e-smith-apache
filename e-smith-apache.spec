@@ -10,7 +10,7 @@ Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
 Patch0: e-smith-apache-2.2.0-AddOffice2007MIMETypes.patch
 Patch1: e-smith-apache-2.2.0-AddOpenOfficeMIMETypes.patch
-Patch2: e-smith-apache-2.2.0-AddXMLMIMETypes.patch
+Patch2: e-smith-apache-2.2.0-AddXMLMIMEType.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.15.1
