@@ -1,0 +1,4 @@
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.xml.AddXMLMIMEType	2009-03-07 21:48:20.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.xml	2009-03-07 21:47:31.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/xml .xml
