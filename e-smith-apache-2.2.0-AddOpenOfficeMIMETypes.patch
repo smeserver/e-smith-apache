@@ -1,0 +1,40 @@
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.sxi.AddOpenOfficeMIMETypes	2009-03-07 21:40:55.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.sxi	2009-03-07 21:44:28.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.sun.xml.impress .sxi
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.sti.AddOpenOfficeMIMETypes	2009-03-07 21:40:55.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.sti	2009-03-07 21:42:11.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.sun.xml.impress.template .sti
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.sxw.AddOpenOfficeMIMETypes	2009-03-07 21:40:55.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.sxw	2009-03-07 21:45:02.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.sun.xml.writer .sxw
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.sxg.AddOpenOfficeMIMETypes	2009-03-07 21:40:55.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.sxg	2009-03-07 21:44:07.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.sun.xml.writer.global .sxg
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.sxd.AddOpenOfficeMIMETypes	2009-03-07 21:40:55.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.sxd	2009-03-07 21:43:45.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.sun.xml.draw .sxd
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.std.AddOpenOfficeMIMETypes	2009-03-07 21:40:55.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.std	2009-03-07 21:41:40.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.sun.xml.draw.template .std
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.stc.AddOpenOfficeMIMETypes	2009-03-07 21:40:55.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.stc	2009-03-07 21:41:23.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.sun.xml.writer .sxw
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.sxc.AddOpenOfficeMIMETypes	2009-03-07 21:40:55.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.sxc	2009-03-07 21:43:08.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.sun.xml.calc .sxc
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.sxm.AddOpenOfficeMIMETypes	2009-03-07 21:40:55.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.sxm	2009-03-07 21:44:45.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.sun.xml.math .sxm
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.stw.AddOpenOfficeMIMETypes	2009-03-07 21:40:55.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.stw	2009-03-07 21:42:41.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.sun.xml.writer.template .stw
