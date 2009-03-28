@@ -1,0 +1,56 @@
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.oth.AddOpenOffice2MIMETypes	2009-03-28 19:21:42.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.oth	2009-03-28 19:18:46.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.oasis.opendocument.text-web .oth
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.ods.AddOpenOffice2MIMETypes	2009-03-28 19:21:42.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.ods	2009-03-28 19:19:44.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.oasis.opendocument.spreadsheet .ods
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.odf.AddOpenOffice2MIMETypes	2009-03-28 19:21:42.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.odf	2009-03-28 19:20:10.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.oasis.opendocument.formula .odf
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.odp.AddOpenOffice2MIMETypes	2009-03-28 19:21:42.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.odp	2009-03-28 19:19:26.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.oasis.opendocument.presentation .odp
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.oxt.AddOpenOffice2MIMETypes	2009-03-28 19:21:42.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.oxt	2009-03-28 19:20:42.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.openofficeorg.extension .oxt
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.odg.AddOpenOffice2MIMETypes	2009-03-28 19:21:42.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.odg	2009-03-28 19:19:04.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.oasis.opendocument.graphics .odg
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.odb.AddOpenOffice2MIMETypes	2009-03-28 19:21:42.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.odb	2009-03-28 19:20:25.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.oasis.opendocument.database .odb
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.ots.AddOpenOffice2MIMETypes	2009-03-28 19:21:42.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.ots	2009-03-28 19:19:52.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.oasis.opendocument.spreadsheet-template .ots
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.odi.AddOpenOffice2MIMETypes	2009-03-28 19:21:42.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.odi	2009-03-28 19:20:32.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.oasis.opendocument.image .odi
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.odt.AddOpenOffice2MIMETypes	2009-03-28 19:21:42.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.odt	2009-03-28 19:18:14.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.oasis.opendocument.text .odt
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.odc.AddOpenOffice2MIMETypes	2009-03-28 19:21:42.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.odc	2009-03-28 19:20:02.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.oasis.opendocument.chart .odc
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.ott.AddOpenOffice2MIMETypes	2009-03-28 19:21:42.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.ott	2009-03-28 19:18:35.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.oasis.opendocument.text-template .ott
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.otg.AddOpenOffice2MIMETypes	2009-03-28 19:21:42.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.otg	2009-03-28 19:19:17.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.oasis.opendocument.graphics-template .otg
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.odm.AddOpenOffice2MIMETypes	2009-03-28 19:21:42.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/75AddType05.odm	2009-03-28 19:18:56.000000000 +0100
+@@ -0,0 +1 @@
++AddType application/vnd.oasis.opendocument.text-master .odm
