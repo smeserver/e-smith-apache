@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 2.0.0
-%define release 4
+%define release 5
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -11,6 +11,7 @@ Source: %{name}-%{version}.tar.gz
 Patch0: e-smith-apache-2.0.0-AddOffice2007MIMETypes.patch
 Patch1: e-smith-apache-2.0.0-AddOpenOfficeMIMETypes.patch
 Patch2: e-smith-apache-2.0.0-AddXMLMIMEType.patch
+Patch3: e-smith-apache-2.0.0-AddOpenOffice2MIMETypes.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.15.1
@@ -26,8 +27,11 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Sat Mar 28 2009 Jonathan Martens <smeserver-contribs@snetram.nl> 2.0.0-5.sme
+- Add OpenOffice2 MIME Types [SME: 5112]
+
 * Sat Mar  7 2009 Jonathan Martens <smeserver-contribs@snetram.nl> 2.0.0-4.sme
-- Add OpenOffixe MIME Types [SME: 4848]
+- Add OpenOffice MIME Types [SME: 4848]
 - Add XML MIME Type [SME: 5035]
 
 * Thu Dec 11 2008 Jonathan Martens <smeserver-contribs@snetram.nl> 2.0.0-3.sme
@@ -532,6 +536,7 @@ e-smith server and gateway software - apache module.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %pre
 
