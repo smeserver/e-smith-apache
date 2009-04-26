@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
 %define version 2.0.0
-%define release 5
+%define release 6
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -12,6 +12,7 @@ Patch0: e-smith-apache-2.0.0-AddOffice2007MIMETypes.patch
 Patch1: e-smith-apache-2.0.0-AddOpenOfficeMIMETypes.patch
 Patch2: e-smith-apache-2.0.0-AddXMLMIMEType.patch
 Patch3: e-smith-apache-2.0.0-AddOpenOffice2MIMETypes.patch
+Patch4: e-smith-apache-2.0.0-optionDisableSSLv2.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.15.1
@@ -27,6 +28,9 @@ BuildRequires: e-smith-devtools >= 1.11.0-12
 e-smith server and gateway software - apache module.
 
 %changelog
+* Sun Apr 26 2009 Jonathan Martens <smeserver-contribs@snetram.nl> 2.0.0-6.sme
+- Add option to disable SSLv2 [SME: 5034]
+
 * Sat Mar 28 2009 Jonathan Martens <smeserver-contribs@snetram.nl> 2.0.0-5.sme
 - Add OpenOffice2 MIME Types [SME: 5112]
 
@@ -537,6 +541,7 @@ e-smith server and gateway software - apache module.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %pre
 

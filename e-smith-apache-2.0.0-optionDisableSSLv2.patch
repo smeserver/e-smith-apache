@@ -1,0 +1,16 @@
+diff -up e-smith-apache-2.0.0/root/etc/e-smith/db/configuration/defaults/httpd-e-smith/SSLv2.optionDisableSSLv2 e-smith-apache-2.0.0/root/etc/e-smith/db/configuration/defaults/httpd-e-smith/SSLv2
+--- e-smith-apache-2.0.0/root/etc/e-smith/db/configuration/defaults/httpd-e-smith/SSLv2.optionDisableSSLv2	2009-04-26 10:56:54.000000000 +0200
++++ e-smith-apache-2.0.0/root/etc/e-smith/db/configuration/defaults/httpd-e-smith/SSLv2	2009-04-26 10:57:03.000000000 +0200
+@@ -0,0 +1 @@
++enabled
+diff -up e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL30SSLProtocol.optionDisableSSLv2 e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL30SSLProtocol
+--- e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL30SSLProtocol.optionDisableSSLv2	2003-01-07 16:00:49.000000000 +0100
++++ e-smith-apache-2.0.0/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/35SSL30SSLProtocol	2009-04-26 11:01:51.000000000 +0200
+@@ -1,4 +1,5 @@
+ {
+-#	Specify which SSL Protocols to accept for this context
++    # Specify which SSL Protocols to accept for this context
++    $OUT .= "SSLProtocol all";
++    $OUT .= " -SSLv2" unless ${'httpd-e-smith'}{'SSLv2'} eq 'enabled';
+ }
+-SSLProtocol all
