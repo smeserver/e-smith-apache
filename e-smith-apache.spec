@@ -1,3 +1,5 @@
+# $Id: e-smith-apache.spec,v 1.11 2010/03/04 16:31:07 slords Exp $
+
 Summary: e-smith server and gateway - apache module
 %define name e-smith-apache
 Name: %{name}
